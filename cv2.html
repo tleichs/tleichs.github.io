@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring – Senior Performance Marketing Manager</title>
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2QLWCTTMF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X2QLWCTTMF');
+
+  // Scroll depth
+  const _sd = new Set();
+  window.addEventListener('scroll', () => {
+    const p = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+    [25,50,75,100].forEach(m => {
+      if (p >= m && !_sd.has(m)) {
+        _sd.add(m);
+        gtag('event', 'scroll_depth', { depth_percent: m, page: 'cv2_decision' });
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Email / phone clicks
+    document.querySelectorAll('a[href^="mailto"], a[href^="tel"]').forEach(a =>
+      a.addEventListener('click', () =>
+        gtag('event', 'contact_click', { method: a.href.startsWith('mailto') ? 'email' : 'phone', page: 'cv2_decision' })
+      )
+    );
+    // LinkedIn click
+    document.querySelectorAll('a[href*="linkedin"]').forEach(a =>
+      a.addEventListener('click', () =>
+        gtag('event', 'contact_click', { method: 'linkedin', page: 'cv2_decision' })
+      )
+    );
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f8f5f0;
+    --paper-dark: #ede9e2;
+    --rule: #d5cfc5;
+    --accent: #1a3a6b;
+    --accent-light: #e8eef6;
+    --red: #c23b22;
+    --muted: #888075;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  header {
+    padding: 64px 72px 48px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .header-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 32px;
+  }
+
+  .name-block h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .name-block h1 em { font-style: italic; color: var(--accent); }
+
+  .title-line {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .title-line::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+
+  .contact-block {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 2;
+    color: var(--muted);
+  }
+  .contact-block a { color: var(--accent); text-decoration: none; }
+  .contact-block a:hover { text-decoration: underline; }
+
+  .header-summary {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #3a3a3a;
+    max-width: 800px;
+    border-left: 3px solid var(--accent);
+    padding-left: 24px;
+    font-style: italic;
+  }
+
+  /* METRICS BAR */
+  .metrics-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .metric-cell {
+    padding: 20px 24px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .metric-cell:last-child { border-right: none; }
+
+  .metric-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    color: #d4b896;
+    line-height: 1;
+    display: block;
+  }
+  .metric-desc {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* LAYOUT */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+  }
+
+  .col-main {
+    padding: 56px 72px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .col-side {
+    padding: 56px 40px;
+    background: var(--paper-dark);
+  }
+
+  /* SECTION HEADERS */
+  .sec-title {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sec-title span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--muted);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* EXPERIENCE */
+  .exp-entry {
+    margin-bottom: 44px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .exp-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    margin-bottom: 4px;
+  }
+
+  .exp-role-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .exp-company .loc { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  .exp-context {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #3a3a3a;
+    padding-left: 20px;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .exp-bullets li strong { color: var(--ink); font-weight: 500; }
+
+  .highlight-box {
+    margin-top: 20px;
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+  }
+  .highlight-box-title {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .highlight-box p { font-size: 13px; line-height: 1.6; color: #3a3a3a; }
+
+  /* SIDEBAR */
+  .side-section { margin-bottom: 40px; }
+
+  .side-title {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill-list li {
+    font-size: 13px;
+    color: #3a3a3a;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .skill-list li:last-child { border-bottom: none; }
+  .skill-list li::before {
+    content: '';
+    display: block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .skill-list li strong { font-weight: 500; color: var(--ink); }
+
+  .lang-entry { margin-bottom: 14px; }
+  .lang-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+  .lang-nm { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .lang-lv { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+  .lang-track { height: 2px; background: var(--rule); position: relative; }
+  .lang-track-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); }
+
+  .edu-entry { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+  .edu-entry:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .edu-degree { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+  .edu-school { font-family: var(--mono); font-size: 10px; color: var(--accent); margin-top: 3px; }
+  .edu-year { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  .cert-tag {
+    display: inline-block;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 10px;
+    color: var(--muted);
+    margin: 4px 4px 0 0;
+  }
+
+  /* FOOTER */
+  .nat-note {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 16px 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nat-note span { color: rgba(255,255,255,0.4); }
+
+  footer {
+    padding: 24px 72px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--paper-dark);
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    header { padding: 40px 32px 32px; }
+    .header-top { grid-template-columns: 1fr; }
+    .contact-block { text-align: left; }
+    .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+    .col-main { padding: 40px 32px; border-right: none; border-bottom: 1px solid var(--rule); }
+    .col-side { padding: 40px 32px; }
+    footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="name-block">
+      <h1>Tiago <em>Leichsenring</em></h1>
+      <div class="title-line">Senior Online Performance Marketing Manager · Berlin · Available May 2026</div>
+    </div>
+    <div class="contact-block">
+      <div><a href="/cdn-cgi/l/email-protection#4f3b262e2820232a262c273c0f28222e2623612c2022"><span class="__cf_email__" data-cfemail="63170a02040c0f060a000b1023040e020a0f4d000c0e">[email&#160;protected]</span></a></div>
+      <div><a href="tel:+4915225844501">+49 152 2584 4501</a></div>
+      <div><a href="https://www.linkedin.com/in/tiago-leichsenring-34134536/">linkedin/tiago-leichsenring</a></div>
+      <div>Berlin · 10407 · Germany</div>
+    </div>
+  </div>
+  <p class="header-summary">
+    Performance marketing manager with 5+ years of hands-on experience across Google, Meta, Bing, and LinkedIn Ads — combining strategic planning and campaign management with technical development capability. Delivered 200% customer growth in a competitive regulated market, developed the full marketing strategy for two brands, rebuilt dead acquisition channels across seven European countries, and independently built AI-powered tools when no one else on the team could.
+  </p>
+</header>
+
+<div class="metrics-bar">
+  <div class="metric-cell">
+    <span class="metric-val">+200%</span>
+    <span class="metric-desc">Customer growth · Year 1 at Linara</span>
+  </div>
+  <div class="metric-cell">
+    <span class="metric-val">7</span>
+    <span class="metric-desc">EU markets · PL RO HU HR BG LT SK</span>
+  </div>
+  <div class="metric-cell">
+    <span class="metric-val">5</span>
+    <span class="metric-desc">Ad platforms (Google Meta Bing LinkedIn TikTok)</span>
+  </div>
+  <div class="metric-cell">
+    <span class="metric-val">5</span>
+    <span class="metric-desc">Languages (PT DE EN IT + ES conversational)</span>
+  </div>
+  <div class="metric-cell">
+    <span class="metric-val">Apr '26</span>
+    <span class="metric-desc">End of contract · available immediately after</span>
+  </div>
+</div>
+
+<div class="main-grid">
+  <div class="col-main">
+
+    <div class="sec-title">Professional Experience <span>· Full detail</span></div>
+
+    <!-- LINARA -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div class="exp-role-title">Online Performance Marketing Manager</div>
+        <div class="exp-period">Oct 2022 — Apr 2026</div>
+      </div>
+      <div class="exp-company">Linara GmbH · <span class="loc">Berlin, Germany · Part-time Hybrid</span></div>
+      <div class="exp-context">Linara provides 24-hour home care services across Germany. Faircare (a Linara brand) recruits care professionals from Eastern Europe. Sole marketing manager for both brands — responsible for strategy, all paid acquisition, analytics infrastructure, and technical web development.</div>
+      <ul class="exp-bullets">
+        <li><strong>Marketing strategy &amp; planning:</strong> Developed the full marketing plan and marketing strategy for both Linara and Faircare — covering channel mix, budget allocation, market positioning, audience segmentation, and international expansion roadmap.</li>
+        <li><strong>Customer acquisition (Linara DE):</strong> Full ownership of Google Ads strategy, campaign structure, bid management, and landing page optimisation for 24-hour home care leads. Achieved <strong>200% customer growth in the first year</strong> from a baseline of non-functional campaigns.</li>
+        <li><strong>International recruitment (Faircare):</strong> Designed and executed multilingual paid campaigns across Poland, Romania, Hungary, Croatia, Bulgaria, Lithuania, and Slovakia. Rebuilt both Google Ads and Meta Ads from zero — both now perform comparably as active acquisition channels.</li>
+        <li><strong>Analytics infrastructure:</strong> Built and maintained GA4 + GTM tracking with custom event schemas and call tracking integration; created BigQuery datasets with SQL queries for attribution modelling, client ID matching, and cross-channel performance reporting.</li>
+        <li><strong>SEO and content:</strong> Defined SEO strategy for multilingual markets; managed website content in Contao CMS; A/B tested landing pages for CRO.</li>
+        <li><strong>Technical development:</strong> Built GDPR-compliant Google Maps integration; intelligent multi-step care service selection form with postal code routing logic; appointment booking system; React/HTML components.</li>
+      </ul>
+      <div class="highlight-box">
+        <div class="highlight-box-title">Proactive Initiative — AI Chatbot System</div>
+        <p>Identified that gaps in the customer consultation journey were damaging brand trust. No team member had the technical skills to solve it. Independently designed and built a complete AI-powered multichannel chatbot in Python (Flask), covering WhatsApp, Telegram, Messenger, and webchat — with intelligent decision tree logic for care service selection. Entirely self-initiated, outside the original job description.</p>
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div class="exp-role-title">IT Support — TikTok Ads Platform</div>
+        <div class="exp-period">May 2022 — Oct 2022</div>
+      </div>
+      <div class="exp-company">TikTok · <span class="loc">Berlin, Germany</span></div>
+      <div class="exp-context">Ads platform support within TikTok's European operations in Berlin.</div>
+      <ul class="exp-bullets">
+        <li>Technical support for TikTok Ads — account management, tracking, campaign setup troubleshooting for advertisers in the DACH region.</li>
+        <li>Deepened technical expertise in social ad platforms, pixel tracking, and audience configuration.</li>
+      </ul>
+    </div>
+
+    <!-- META -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div class="exp-role-title">Sales Performance Marketing Specialist</div>
+        <div class="exp-period">Jun 2021 — Jan 2022</div>
+      </div>
+      <div class="exp-company">Concentrix (vendor for Meta Ads) · <span class="loc">Berlin, Germany</span></div>
+      <div class="exp-context">Client-facing specialist advising Facebook/Instagram advertisers on campaign strategy and performance.</div>
+      <ul class="exp-bullets">
+        <li>Consultative support to Meta advertisers: campaign strategy, audience definition, creative guidance, and budget optimisation.</li>
+        <li>Recommendations to reduce wasted spend and improve CTR, CPM, and ad quality scores across direct response and brand objectives.</li>
+      </ul>
+    </div>
+
+    <!-- GOOGLE -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div class="exp-role-title">Online Marketer — Google Ads &amp; Analytics</div>
+        <div class="exp-period">May 2020 — Jun 2021</div>
+      </div>
+      <div class="exp-company">Majorel (vendor for Google Ads) · <span class="loc">Berlin, Germany · DACH Market</span></div>
+      <div class="exp-context">Product support specialist working on behalf of Google for the DACH market across Google Ads, Merchant Center, and Google Analytics.</div>
+      <ul class="exp-bullets">
+        <li>Set up, diagnosed, and optimised Google Ads accounts (search, display, remarketing, Shopping), Merchant Center product feeds, and Google Analytics implementations (Universal Analytics + GA4 + GTM).</li>
+        <li>Designated internal Point of Contact for Google Analytics — expert for colleagues on tracking, tags, e-commerce setup, and remarketing lists.</li>
+      </ul>
+    </div>
+
+    <!-- FREELANCE TEACHER -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div class="exp-role-title">German Language Teacher (Freelance)</div>
+        <div class="exp-period">Jun 2018 — Jan 2020</div>
+      </div>
+      <div class="exp-company">Freelance · <span class="loc">Berlin, Germany</span></div>
+      <ul class="exp-bullets">
+        <li>Private German language instruction for individuals and small groups; curriculum design and materials production.</li>
+      </ul>
+    </div>
+
+    <!-- BISMARCK -->
+    <div class="exp-entry">
+      <div class="exp-header">
+        <div class="exp-role-title">Service Team Leader</div>
+        <div class="exp-period">Dec 2017 — Jun 2018</div>
+      </div>
+      <div class="exp-company">Bismarck Servicekraft · <span class="loc">Berlin, Germany</span></div>
+      <ul class="exp-bullets">
+        <li>Assigned as team leader at Maritim Pro Arte Hotel through Bismarck Service — coordinating service staff, managing shift operations, and ensuring quality standards during events.</li>
+      </ul>
+    </div>
+
+  </div><!-- /col-main -->
+
+  <div class="col-side">
+
+    <div class="side-section">
+      <div class="side-title">Core Competencies</div>
+      <ul class="skill-list">
+        <li><strong>Marketing Strategy &amp; Planning</strong> — both brand level</li>
+        <li><strong>Google Ads</strong> — Search, Display, PMax, Shopping</li>
+        <li><strong>Meta Ads</strong> — Facebook, Instagram, Catalogue</li>
+        <li><strong>Bing Ads</strong> — DACH &amp; EU markets</li>
+        <li><strong>LinkedIn Ads</strong> — B2B &amp; recruitment</li>
+        <li><strong>GA4 + GTM</strong> — Event tracking, goals, e-commerce</li>
+        <li><strong>BigQuery + SQL</strong> — Attribution, reporting</li>
+        <li><strong>Python</strong> — Flask, chatbot APIs, automation</li>
+        <li><strong>HTML5 / CSS3 / JS</strong> — Frontend development</li>
+        <li><strong>Contao CMS</strong> — Content management</li>
+        <li><strong>SEO</strong> — Technical &amp; content strategy</li>
+        <li><strong>CRO / A/B Testing</strong> — Landing page optimisation</li>
+        <li><strong>Prompt Engineering</strong> — LLM integration</li>
+      </ul>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title">Languages</div>
+      <div class="lang-entry">
+        <div class="lang-header"><span class="lang-nm">Portuguese</span><span class="lang-lv">Native</span></div>
+        <div class="lang-track"><div class="lang-track-fill" style="width:100%"></div></div>
+      </div>
+      <div class="lang-entry">
+        <div class="lang-header"><span class="lang-nm">German</span><span class="lang-lv">C2</span></div>
+        <div class="lang-track"><div class="lang-track-fill" style="width:95%"></div></div>
+      </div>
+      <div class="lang-entry">
+        <div class="lang-header"><span class="lang-nm">English</span><span class="lang-lv">C1</span></div>
+        <div class="lang-track"><div class="lang-track-fill" style="width:80%"></div></div>
+      </div>
+      <div class="lang-entry">
+        <div class="lang-header"><span class="lang-nm">Italian</span><span class="lang-lv">C1</span></div>
+        <div class="lang-track"><div class="lang-track-fill" style="width:78%"></div></div>
+      </div>
+      <div class="lang-entry">
+        <div class="lang-header"><span class="lang-nm">Spanish</span><span class="lang-lv">Conversational</span></div>
+        <div class="lang-track"><div class="lang-track-fill" style="width:55%"></div></div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title">Education</div>
+      <div class="edu-entry">
+        <div class="edu-degree">Lehramt — Deutsch als Fremdsprache</div>
+        <div class="edu-school">Universidade Federal do Paraná (UFPR)</div>
+        <div class="edu-year">2003 – 2008 · Curitiba, Brazil</div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title">Training</div>
+      <span class="cert-tag">Online Marketing Strategy — OMT</span>
+      <span class="cert-tag">SEO Deep Dive — OMT</span>
+      <span class="cert-tag">Google Ads (hands-on, 5+ yrs)</span>
+      <span class="cert-tag">Meta Ads (hands-on, 4+ yrs)</span>
+      <span class="cert-tag">Self-taught: Python / Flask</span>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title">Profile</div>
+      <ul class="skill-list">
+        <li>Italian citizen · full EU work authorisation</li>
+        <li>Berlin-based since 2017</li>
+        <li>Available from May 2026</li>
+        <li>International: DACH + Eastern Europe</li>
+        <li>Strategy, analytics, technical execution — independently</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="nat-note">
+  <span>Tiago Leichsenring · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbafb2babcb4b7beb2b8b3a89bbcb6bab2b7f5b8b4b6">[email&#160;protected]</a> · +49 152 2584 4501</span>
+  <sp
