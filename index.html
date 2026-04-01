@@ -1,27 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring – Performance Marketing Manager</title>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2QLWCTTMF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X2QLWCTTMF');
+
+  const _sd = new Set();
+  window.addEventListener('scroll', () => {
+    const p = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+    [25,50,75,100].forEach(m => {
+      if (p >= m && !_sd.has(m)) {
+        _sd.add(m);
+        gtag('event', 'scroll_depth', { depth_percent: m, page: 'cv1_consideration' });
+      }
+    });
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const cta = document.querySelector('.cta-link');
+    if (cta) cta.addEventListener('click', () =>
+      gtag('event', 'cta_click', { label: 'view_detailed_cv', page: 'cv1_consideration' })
+    );
+    document.querySelectorAll('a[href*="linkedin"]').forEach(a =>
+      a.addEventListener('click', () =>
+        gtag('event', 'contact_click', { method: 'linkedin', page: 'cv1_consideration' })
+      )
+    );
+  });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        font-weight: 400;
-        font-size: 16px; /* Ensure there's a base font size */
-        line-height: 1.8;
-    }
-    .hero-desc { font-size: 24px; }
-    .result-body { font-size: 17px; }
-    .skill-main { font-size: 16px; }
-    .skill-plain { font-size: 16px; }
-    .exp-role { font-size: 16px; }
-    .exp-role span { font-size: 13px; }
-    .closer-note { font-size: 16px; }
-    .footer-note { font-size: 15px; }
-    .hero-nav-label { font-size: 11px; }
-    .hero-nav-link { font-size: 11px; }
-    .hero-eyebrow { font-size: 12px; }
-    .card-label { font-size: 13px; }
-    .sec-label { font-size: 10px; }
-    .result-num { font-size: 10px; }
-    .skill-group h4 { font-size: 10px; }
-    .skill-sub { font-size: 11px; }
-    .exp-period { font-size: 11px; }
-    .exp-tag { font-size: 10px; }
-    .lang-level { font-size: 10px; }
-    .footer-linkedin { font-size: 12px; }
+  :root {
+    --base:    #1e2330;
+    --surface: #252a3a;
+    --raised:  #2c3347;
+    --border:  rgba(255,255,255,0.07);
+    --amber:   #c8893a;
+    --amber-l: #d4a04a;
+    --rust:    #a85c38;
+    --text:    #d8d4cc;
+    --muted:   #7a7870;
+    --bright:  #ede8e0;
+    --mono:    'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--base);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 48px 80px 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -180px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,137,58,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hero-nav-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-nav-link {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,137,58,0.3);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .hero-nav-link:hover { border-color: var(--amber); }
+
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 0 32px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--amber);
+  }
+
+  .hero-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(64px, 9vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--bright);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero-name span { color: var(--amber); }
+
+  .hero-desc {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 777px;
+    line-height: 1.8;
+  }
+
+  /* Metric cards */
+  .hero-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--amber);
+    opacity: 0.6;
+  }
+
+  .card-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--amber-l);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .card-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 72px 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section.alt { background: var(--surface); }
+
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── RESULTS ── */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .result-card {
+    background: var(--raised);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .result-num {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .result-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--bright);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .result-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .result-body strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 64px;
+  }
+
+  .skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .skill-group h4 {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-group.ai-featured h4 {
+    color: var(--amber-l);
+  }
+
+  .skill-group.ai-featured {
+    background: var(--raised);
+    border: 1px solid rgba(200,137,58,0.2);
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+
+  .skill-entry {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .skill-main {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+    display: block;
+    line-height: 1.3;
+  }
+
+  .skill-group.ai-featured .skill-main {
+    color: var(--bright);
+  }
+
+  .skill-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  .skill-plain {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    display: block;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    line-height: 1.3;
+  }
+
+  /* ── CAREER ── */
+  .exp-row {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .exp-row:first-of-type { border-top: 1px solid var(--border); }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .exp-role {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .exp-role span {
+    display: block;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .exp-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .exp-tag.end {
+    border-color: rgba(200,137,58,0.3);
+    color: var(--amber);
+  }
+
+  /* ── LANGUAGES ── */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+
+  .lang-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: var(--bright);
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .lang-level {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .lang-track {
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    position: relative;
+  }
+  .lang-track::after {
+    content: '';
+    position: absolute; left: 0; top: 0;
+    height: 100%;
+    background: var(--amber);
+    border-radius: 1px;
+  }
+  .lang-track.p100::after { width: 100%; }
+  .lang-track.p95::after  { width: 95%; }
+  .lang-track.p80::after  { width: 80%; }
+  .lang-track.p78::after  { width: 78%; }
+  .lang-track.p55::after  { width: 55%; }
+
+  /* ── CLOSER ── */
+  .closer {
+    padding: 72px 80px;
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .closer-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    color: var(--bright);
+  }
+
+  .closer-tagline em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .closer-note {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .closer-note strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── FOOTER / CTA ── */
+  .footer {
+    padding: 56px 80px;
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--bright);
+    line-height: 1;
+  }
+
+  .footer-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .footer-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,137,58,0.25);
+    padding-bottom: 1px;
+    width: fit-content;
+    transition: border-color 0.2s;
+  }
+  .footer-linkedin:hover { border-color: var(--amber); }
+
+  .cta-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    background: var(--amber);
+    border-radius: 3px;
+    padding: 22px 40px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .cta-link:hover { background: var(--amber-l); }
+
+  .cta-link-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--base);
+    opacity: 0.7;
+  }
+
+  .cta-link-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--base);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cta-link-text::after {
+    content: '→';
+    font-size: 20px;
+  }
+
+  @media (max-width: 960px) {
+    .footer { grid-template-columns: 1fr; }
+    .cta-link { align-self: flex-start; }
+    .hero, section, .closer, .footer { padding: 48px 32px; }
+    .hero-cards { grid-template-columns: 1fr 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; gap: 32px; }
+    .lang-grid { grid-template-columns: repeat(3, 1fr); }
+    .exp-row { grid-template-columns: 1fr; gap: 6px; }
+    .closer { grid-template-columns: 1fr; gap: 40px; }
+  }
 </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <nav class="hero-nav">
+    <span class="hero-nav-label">Performance Marketing · Berlin · 2026</span>
+    <a href="https://www.linkedin.com/in/tiago-leichsenring-34134536/" class="hero-nav-link" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+
+  <div class="hero-main">
+    <div class="hero-eyebrow">Online Performance Marketing Manager</div>
+    <h1 class="hero-name">Tiago<br><span>Leichsenring</span></h1>
+    <p class="hero-desc">5+ years driving customer acquisition and market expansion — across paid channels, analytics infrastructure, and product development — in regulated and high-growth markets.</p>
+  </div>
+
+  <div class="hero-cards">
+    <div class="card">
+      <span class="card-value">200%</span>
+      <span class="card-label">Customer growth · Linara · year one</span>
+    </div>
+    <div class="card">
+      <span class="card-value">7</span>
+      <span class="card-label">EU markets · active recruitment campaigns</span>
+    </div>
+    <div class="card">
+      <span class="card-value">3 yrs</span>
+      <span class="card-label">Linara GmbH Berlin · until Apr 2026</span>
+    </div>
+    <div class="card">
+      <span class="card-value">4 ch</span>
+      <span class="card-label">AI chatbot built · WhatsApp, Telegram, Messenger, webchat</span>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<section>
+  <div class="sec-label">Selected results</div>
+  <div class="results-grid">
+    <div class="result-card">
+      <span class="result-num">01</span>
+      <div class="result-title">200% customer growth · Linara Germany</div>
+      <p class="result-body">Inherited non-functional Google Ads campaigns. Rebuilt strategy, account structure, audience targeting, and conversion tracking from scratch. <strong>Doubled and tripled the customer base within the first year.</strong></p>
+    </div>
+    <div class="result-card">
+      <span class="result-num">02</span>
+      <div class="result-title">Faircare · seven markets activated</div>
+      <p class="result-body">Rebuilt Google Ads and Meta Ads from zero across PL, RO, HU, HR, BG, LT, and SK. <strong>Both channels now perform comparably</strong> as active recruitment acquisition sources.</p>
+    </div>
+    <div class="result-card">
+      <span class="result-num">03</span>
+      <div class="result-title">Marketing strategy · both brands</div>
+      <p class="result-body">Developed the full marketing plan and strategy for Linara and Faircare — <strong>channel mix, budget allocation, market positioning,</strong> audience segmentation, and international expansion roadmap.</p>
+    </div>
+    <div class="result-card">
+      <span class="result-num">04</span>
+      <div class="result-title">AI chatbot · built independently</div>
+      <p class="result-body">Identified a gap in the consultation funnel. Nobody on the team had the technical skills. <strong>Built a Python Flask chatbot</strong> across four channels with decision tree logic — entirely outside the original job scope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="alt">
+  <div class="sec-label">Tech stack</div>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <h4>Paid Acquisition</h4>
+      <div class="skill-entry">
+        <span class="skill-main">Google Ads</span>
+        <span class="skill-sub">Search · Display · Performance Max · Shopping</span>
+      </div>
+      <div class="skill-entry">
+        <span class="skill-main">Meta Ads</span>
+        <span class="skill-sub">Facebook · Instagram · Catalogue</span>
+      </div>
+      <div class="skill-entry">
+        <span class="skill-main">LinkedIn Ads</span>
+        <span class="skill-sub">B2B · Recruitment campaigns</span>
+      </div>
+      <span class="skill-plain">Bing Ads</span>
+    </div>
+
+    <div class="skill-group ai-featured">
+      <h4>AI &amp; Development</h4>
+      <div class="skill-entry">
+        <span class="skill-main">AI Chatbot Development</span>
+        <span class="skill-sub">WhatsApp · Telegram · Messenger · Webchat · Decision trees</span>
+      </div>
+      <div class="skill-entry">
+        <span class="skill-main">Prompt Engineering &amp; LLM Integration</span>
+        <span class="skill-sub">Claude · GPT · Anthropic API · Workflow automation</span>
+      </div>
+      <div class="skill-entry">
+        <span class="skill-main">Python / Flask</span>
+        <span class="skill-sub">Backend · API integrations · Automation scripts</span>
+      </div>
+      <span class="skill-plain">JavaScript · HTML5 · CSS3</span>
+    </div>
+
+    <div class="skill-group">
+      <h4>Analytics &amp; Data</h4>
+      <div class="skill-entry">
+        <span class="skill-main">BigQuery / SQL</span>
+        <span class="skill-sub">Attribution modelling · Client ID matching · Reporting</span>
+      </div>
+      <div class="skill-entry">
+        <span class="skill-main">Google Analytics 4</span>
+        <span class="skill-sub">Event tracking · E-commerce · Custom dimensions</span>
+      </div>
+      <span class="skill-plain">Google Tag Manager</span>
+      <span class="skill-plain">Conversion tracking</span>
+    </div>
+
+    <div class="skill-group">
+      <h4>Strategy</h4>
+      <div class="skill-entry">
+        <span class="skill-main">Marketing Strategy &amp; Planning</span>
+        <span class="skill-sub">4Ps / 7Ps · STP Framework</span>
+      </div>
+      <div class="skill-entry">
+        <span class="skill-main">Audience Targeting &amp; Segmentation</span>
+        <span class="skill-sub">International · Multilingual · Multi-market</span>
+      </div>
+      <span class="skill-plain">Funnel Architecture</span>
+      <span class="skill-plain">Technical SEO</span>
+      <span class="skill-plain">International Market Expansion</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAREER -->
+<section>
+  <div class="sec-label">Career</div>
+
+  <div class="exp-row">
+    <div class="exp-period">Oct 2022 — Apr 2026</div>
+    <div class="exp-role">Online Performance Marketing Manager<span>Linara GmbH · Berlin · Part-time Hybrid</span></div>
+    <div class="exp-tag end">Until Apr 2026</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">May 2022 — Oct 2022</div>
+    <div class="exp-role">IT Support — TikTok Ads Platform<span>TikTok · Berlin</span></div>
+    <div class="exp-tag">Ads</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">Jun 2021 — Jan 2022</div>
+    <div class="exp-role">Sales Performance Marketing Specialist<span>Concentrix for Meta Ads · Berlin</span></div>
+    <div class="exp-tag">Meta</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">May 2020 — Jun 2021</div>
+    <div class="exp-role">Online Marketer — Google Ads &amp; Analytics<span>Majorel for Google · Berlin · DACH</span></div>
+    <div class="exp-tag">Google</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">Jun 2018 — Jan 2020</div>
+    <div class="exp-role">German Language Teacher<span>Freelance · Berlin</span></div>
+    <div class="exp-tag">Lang</div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="alt">
+  <div class="sec-label">Languages</div>
+  <div class="lang-grid">
+    <div>
+      <span class="lang-name">Portuguese</span>
+      <span class="lang-level">Native</span>
+      <div class="lang-track p100"></div>
+    </div>
+    <div>
+      <span class="lang-name">German</span>
+      <span class="lang-level">C2</span>
+      <div class="lang-track p95"></div>
+    </div>
+    <div>
+      <span class="lang-name">English</span>
+      <span class="lang-level">C1</span>
+      <div class="lang-track p80"></div>
+    </div>
+    <div>
+      <span class="lang-name">Italian</span>
+      <span class="lang-level">C1 · EU Citizen</span>
+      <div class="lang-track p78"></div>
+    </div>
+    <div>
+      <span class="lang-name">Spanish</span>
+      <span class="lang-level">Conversational</span>
+      <div class="lang-track p55"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<div class="closer">
+  <div class="closer-tagline">Strategy.<br>Code.<br><em>Results.</em></div>
+  <div class="closer-note">
+    The combination is less common than it sounds. Running international acquisition campaigns across seven markets, writing the marketing strategy, building the analytics stack, and developing the tools the team was missing — that is what the last three years at Linara looked like.<br><br>
+    <strong>Lehramt Deutsch als Fremdsprache · Universidade Federal do Paraná · Brazil.</strong><br>
+    Berlin-based since 2017. Available from May 2026.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    <div class="footer-heading">Want the full picture?</div>
+    <p class="footer-note">The detailed CV covers every role, the full analytics setup, the chatbot architecture, and the strategy work — with enough detail to make a decision.</p>
+    <a href="https://www.linkedin.com/in/tiago-leichsenring-34134536/" class="footer-linkedin" target="_blank" rel="noopener">
+      linkedin.com/in/tiago-leichsenring
+    </a>
+  </div>
+  <a href="cv2.html" class="cta-link">
+    <span class="cta-link-label">Full professional CV</span>
+    <span class="cta-link-text">View detailed CV</span>
+  </a>
+</div>
+
+</body>
+</html>
