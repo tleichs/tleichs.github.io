@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring – Performance Marketing Manager</title>
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2QLWCTTMF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X2QLWCTTMF');
+
+  // Scroll depth — 25 / 50 / 75 / 100%
+  const _sd = new Set();
+  window.addEventListener('scroll', () => {
+    const p = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+    [25,50,75,100].forEach(m => {
+      if (p >= m && !_sd.has(m)) {
+        _sd.add(m);
+        gtag('event', 'scroll_depth', { depth_percent: m, page: 'cv1_consideration' });
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // CTA click → CV2
+    const cta = document.querySelector('.cta-link');
+    if (cta) cta.addEventListener('click', () =>
+      gtag('event', 'cta_click', { label: 'view_detailed_cv', page: 'cv1_consideration' })
+    );
+    // Email / phone clicks
+    document.querySelectorAll('a[href^="mailto"], a[href^="tel"]').forEach(a =>
+      a.addEventListener('click', () =>
+        gtag('event', 'contact_click', { method: a.href.startsWith('mailto') ? 'email' : 'phone', page: 'cv1_consideration' })
+      )
+    );
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --accent: #e8ff00;
+    --mid: #1c1c1c;
+    --border: #2e2e2e;
+    --muted: #777;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 56px 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -300px; right: -300px;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(232,255,0,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-contact-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 2;
+  }
+
+  .hero-contact-line a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 0 20px;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 11vw, 148px);
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: #aaa;
+    max-width: 560px;
+    line-height: 1.75;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .metric {
+    background: var(--black);
+    padding: 24px 28px;
+  }
+
+  .metric-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+  }
+
+  .metric-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 80px 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    max-width: 80px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── RESULTS ─── */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .result-card {
+    background: var(--mid);
+    padding: 36px 32px;
+  }
+
+  .result-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .result-card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .result-card-body {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.7;
+  }
+
+  .result-card-body strong { color: #bbb; font-weight: 400; }
+
+  /* ─── SKILLS ─── */
+  .skills-section { background: var(--mid); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .skill-group h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill-list li {
+    font-size: 13px;
+    color: #999;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .skill-list li.hl { color: var(--accent); }
+
+  /* ─── EXPERIENCE ─── */
+  .exp-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 160px;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .exp-row:first-of-type { border-top: 1px solid var(--border); }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    padding-top: 2px;
+  }
+
+  .exp-role {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .exp-role span {
+    display: block;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .exp-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    justify-self: end;
+    align-self: start;
+  }
+  .exp-tag.end {
+    border-color: rgba(232,255,0,0.2);
+    color: rgba(232,255,0,0.6);
+  }
+
+  /* ─── LANGUAGES ─── */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px;
+  }
+
+  .lang-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .lang-level {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .lang-track {
+    height: 1px;
+    background: var(--border);
+    position: relative;
+  }
+  .lang-track::after {
+    content: '';
+    position: absolute; left: 0; top: 0;
+    height: 100%;
+    background: var(--accent);
+  }
+  .lang-track.p100::after { width: 100%; }
+  .lang-track.p95::after  { width: 95%; }
+  .lang-track.p80::after  { width: 80%; }
+  .lang-track.p78::after  { width: 78%; }
+  .lang-track.p55::after  { width: 55%; }
+
+  /* ─── TAGLINE CLOSER ─── */
+  .closer {
+    padding: 80px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    background: var(--mid);
+  }
+
+  .closer-tagline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7vw, 96px);
+    line-height: 0.9;
+    color: var(--white);
+  }
+
+  .closer-tagline em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .closer-note {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.8;
+    max-width: 420px;
+  }
+
+  .closer-note strong { color: #bbb; font-weight: 400; }
+
+  /* ─── CTA ─── */
+  .cta {
+    padding: 64px 80px;
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .cta-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 16px 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-link:hover {
+    background: var(--accent);
+    color: var(--black);
+  }
+
+  .cta-link::after {
+    content: '→';
+    font-size: 14px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero, section, .closer, .cta { padding: 48px 36px; }
+    .hero-bottom { grid-template-columns: 1fr 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .lang-grid { grid-template-columns: repeat(3, 1fr); }
+    .exp-row { grid-template-columns: 1fr; gap: 8px; }
+    .exp-tag { justify-self: start; }
+    .closer { grid-template-columns: 1fr; }
+    .cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-label">Online Performance Marketing · Berlin</div>
+    <div class="hero-contact-line">
+      <div><a href="/cdn-cgi/l/email-protection#582c31393f37343d313b302b183f35393134763b3735"><span class="__cf_email__" data-cfemail="c8bca1a9afa7a4ada1aba0bb88afa5a9a1a4e6aba7a5">[email&#160;protected]</span></a></div>
+      <div><a href="tel:+4915225844501">+49 152 2584 4501</a></div>
+      <div>Italian citizen · EU work authorisation</div>
+    </div>
+  </div>
+
+  <div class="hero-main">
+    <h1 class="hero-name">TIAGO<br><span>LEICHS-<br>ENRING</span></h1>
+    <p class="hero-desc">5+ years running paid acquisition, analytics, and web development — primarily in the German health and care market, with multilingual campaign management across seven Eastern European countries. Available from May 2026.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="metric">
+      <span class="metric-number">200%</span>
+      <span class="metric-label">Customer growth at Linara, year one</span>
+    </div>
+    <div class="metric">
+      <span class="metric-number">7</span>
+      <span class="metric-label">EU markets · active recruitment campaigns</span>
+    </div>
+    <div class="metric">
+      <span class="metric-number">3</span>
+      <span class="metric-label">Years at Linara GmbH Berlin · to Apr 2026</span>
+    </div>
+    <div class="metric">
+      <span class="metric-number">4ch</span>
+      <span class="metric-label">AI chatbot built — WhatsApp, Telegram, Messenger, webchat</span>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<section>
+  <div class="sec-label">Selected results</div>
+  <div class="results-grid">
+    <div class="result-card">
+      <span class="result-card-num">01</span>
+      <div class="result-card-title">200% customer growth, Linara Germany</div>
+      <p class="result-card-body">Inherited non-functional Google Ads campaigns. Rebuilt strategy, account structure, audience targeting, and conversion tracking from scratch. <strong>Doubled and then tripled the customer base within the first year.</strong></p>
+    </div>
+    <div class="result-card">
+      <span class="result-card-num">02</span>
+      <div class="result-card-title">Faircare — seven Eastern European markets</div>
+      <p class="result-card-body">Google Ads for Faircare's recruitment had never worked. Rebuilt campaigns from scratch across PL, RO, HU, HR, BG, LT, and SK. <strong>Google Ads now performs comparably to Meta Ads</strong> — both are active acquisition channels.</p>
+    </div>
+    <div class="result-card">
+      <span class="result-card-num">03</span>
+      <div class="result-card-title">Marketing plans built for both brands</div>
+      <p class="result-card-body">Developed the full <strong>marketing strategy and marketing plan for Linara and Faircare</strong> — covering channel mix, budget allocation, market positioning, and international expansion targets.</p>
+    </div>
+    <div class="result-card">
+      <span class="result-card-num">04</span>
+      <div class="result-card-title">AI chatbot — built independently</div>
+      <p class="result-card-body">Identified gaps in the consultation funnel. Nobody on the team had the technical skills. Built a <strong>Python Flask chatbot across WhatsApp, Telegram, Messenger, and webchat</strong> with decision tree logic — entirely outside the original job scope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="sec-label">Tech stack</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Paid Acquisition</h4>
+      <ul class="skill-list">
+        <li class="hl">Google Ads</li>
+        <li class="hl">Meta Ads</li>
+        <li>Bing Ads</li>
+        <li>LinkedIn Ads</li>
+        <li>Performance Max</li>
+        <li>Smart Bidding</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Analytics & Data</h4>
+      <ul class="skill-list">
+        <li class="hl">BigQuery / SQL</li>
+        <li class="hl">Google Analytics 4</li>
+        <li>Google Tag Manager</li>
+        <li>Attribution modelling</li>
+        <li>Conversion tracking</li>
+        <li>Call tracking</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Development</h4>
+      <ul class="skill-list">
+        <li class="hl">Python / Flask</li>
+        <li>JavaScript</li>
+        <li>HTML5 / CSS3</li>
+        <li>Contao CMS</li>
+        <li>Chatbot APIs</li>
+        <li>Prompt Engineering</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Strategy</h4>
+      <ul class="skill-list">
+        <li class="hl">Marketing Strategy</li>
+        <li class="hl">Marketing Planning</li>
+        <li>CRO / A/B Testing</li>
+        <li>Technical SEO</li>
+        <li>Multilingual markets</li>
+        <li>GDPR compliance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+  <div class="sec-label">Career</div>
+
+  <div class="exp-row">
+    <div class="exp-period">Oct 2022 — Apr 2026</div>
+    <div class="exp-role">Online Performance Marketing Manager<span>Linara GmbH · Berlin · Part-time Hybrid</span></div>
+    <div class="exp-tag end">Until Apr 2026</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">May 2022 — Oct 2022</div>
+    <div class="exp-role">IT Support — TikTok Ads Platform<span>TikTok · Berlin</span></div>
+    <div class="exp-tag">Ads</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">Jun 2021 — Jan 2022</div>
+    <div class="exp-role">Sales Performance Marketing Specialist<span>Concentrix for Meta Ads · Berlin</span></div>
+    <div class="exp-tag">Meta</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">May 2020 — Jun 2021</div>
+    <div class="exp-role">Online Marketer — Google Ads &amp; Analytics<span>Majorel for Google · Berlin · DACH</span></div>
+    <div class="exp-tag">Google</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">Jun 2018 — Jan 2020</div>
+    <div class="exp-role">German Language Teacher<span>Freelance · Berlin</span></div>
+    <div class="exp-tag">Lang</div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section style="background: var(--mid);">
+  <div class="sec-label">Languages</div>
+  <div class="lang-grid">
+    <div class="lang-item">
+      <span class="lang-name">Portuguese</span>
+      <span class="lang-level">Native</span>
+      <div class="lang-track p100"></div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">German</span>
+      <span class="lang-level">C2</span>
+      <div class="lang-track p95"></div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">English</span>
+      <span class="lang-level">C1</span>
+      <div class="lang-track p80"></div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">Italian</span>
+      <span class="lang-level">C1 · EU Citizen</span>
+      <div class="lang-track p78"></div>
+    </div>
+    <div class="lang-item">
+      <span class="lang-name">Spanish</span>
+      <span class="lang-level">Conversational</span>
+      <div class="lang-track p55"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TAGLINE CLOSER -->
+<div class="closer">
+  <div class="closer-tagline">Strategy.<br>Code.<br><em>Results.</em></div>
+  <div class="closer-note">
+    The combination is less common than it sounds. Most people do one or the other well. Running international acquisition campaigns across seven markets, writing the marketing strategy, building the analytics stack, and developing the tools the team was missing — that is what the last three years at Linara looked like.<br><br>
+    <strong>Lehramt Deutsch als Fremdsprache · Universidade Federal do Paraná · Brazil.</strong><br>
+    Berlin-based since 2017. Available from May 2026.
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-text">Interested? Take a closer look
