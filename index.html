@@ -48,9 +48,9 @@
     --amber:   #c8893a;
     --amber-l: #d4a04a;
     --rust:    #a85c38;
-    --text:    #d8d4cc;
-    --muted:   #7a7870;
-    --bright:  #ede8e0;
+    --text:    #f0ece4;
+    --muted:   #c0b8a8;
+    --bright:  #faf8f4;
     --mono:    'JetBrains Mono', monospace;
   }
 
@@ -152,10 +152,10 @@
   .hero-name span { color: var(--amber); }
 
   .hero-desc {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 300;
     color: var(--muted);
-    max-width: 777px;
+    max-width: 520px;
     line-height: 1.8;
   }
 
@@ -196,7 +196,7 @@
 
   .card-label {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
@@ -266,7 +266,7 @@
   }
 
   .result-body {
-    font-size: 15px;
+    font-size: 13px;
     color: var(--muted);
     line-height: 1.75;
   }
@@ -578,6 +578,30 @@
     .exp-row { grid-template-columns: 1fr; gap: 6px; }
     .closer { grid-template-columns: 1fr; gap: 40px; }
   }
+
+  /* ── TYPOGRAPHY OVERRIDES ── */
+  body { font-weight: 400; font-size: 16px; line-height: 1.8; }
+  .hero-desc     { font-size: 24px; }
+  .result-body   { font-size: 17px; }
+  .skill-main    { font-size: 16px; }
+  .skill-plain   { font-size: 16px; }
+  .exp-role      { font-size: 16px; }
+  .exp-role span { font-size: 13px; }
+  .closer-note   { font-size: 16px; }
+  .footer-note   { font-size: 15px; }
+  .hero-nav-label  { font-size: 11px; }
+  .hero-nav-link   { font-size: 11px; }
+  .hero-eyebrow    { font-size: 12px; }
+  .card-label      { font-size: 13px; }
+  .sec-label       { font-size: 10px; }
+  .result-num      { font-size: 10px; }
+  .skill-group h4  { font-size: 10px; }
+  .skill-sub       { font-size: 11px; }
+  .exp-period      { font-size: 11px; }
+  .exp-tag         { font-size: 10px; }
+  .lang-level      { font-size: 10px; }
+  .footer-linkedin { font-size: 12px; }
+
 </style>
 </head>
 <body>
