@@ -594,6 +594,14 @@ function applyLang(code) {
   set('nat-note-text', 'natNote');
   set('footer-l', 'footerL'); set('footer-m', 'footerM'); set('footer-r', 'footerR');
 
+  // Switch PDF download link
+  const pdfBtn = document.getElementById('pdf-btn');
+  if (pdfBtn) {
+    pdfBtn.href = code === 'de' ? 'cv2_leichsenring_de.pdf' : 'cv2_leichsenring_en.pdf';
+    pdfBtn.download = code === 'de' ? 'Tiago_Leichsenring_Lebenslauf.pdf' : 'Tiago_Leichsenring_CV.pdf';
+    pdfBtn.textContent = t.downloadBtn;
+  }
+
   // Flags
   document.querySelectorAll('.flag-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('flag-' + code).classList.add('active');
