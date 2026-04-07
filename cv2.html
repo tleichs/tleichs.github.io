@@ -308,6 +308,12 @@
     .col-side { padding: 40px 32px; }
     footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
   }
+
+  @media print {
+    .lang-switcher { display: none !important; }
+    .header-top-bar { display: none !important; }
+  }
+
 </style>
 
 <!-- ═══════════════════════════════ LANGUAGE DATA ═══════════════════════════════ -->
@@ -393,7 +399,7 @@ const T = {
     sk12s: '— Landing-Page-Optimierung',
     sk13s: '— LLM-Integration',
     sideLang: 'Sprachen',
-    lv1: 'Muttersprache', lv2: 'K2', lv3: 'K1', lv4: 'K1', lv5: 'Konversationssicher',
+    lv1: 'Muttersprache', lv2: 'C2', lv3: 'C1', lv4: 'C1', lv5: 'Konversationssicher',
     ln1: 'Portugiesisch', ln2: 'Deutsch', ln3: 'Englisch', ln4: 'Italienisch', ln5: 'Spanisch',
     sideEdu: 'Ausbildung',
     eduDeg: 'Lehramt — Deutsch als Fremdsprache',
@@ -641,6 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="contact-block">
         <div><a href="https://www.linkedin.com/in/tiago-leichsenring-34134536/">linkedin/tiago-leichsenring</a></div>
         <div>Berlin · 10407 · Deutschland</div>
+        <div id="lang-line">PT · DE · EN · IT · ES</div>
       </div>
       <a href="cv2_leichsenring.pdf" download="Tiago_Leichsenring_CV.pdf" class="pdf-download-hero" id="pdf-btn">↓ Lebenslauf als PDF</a>
     </div>
