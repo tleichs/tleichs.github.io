@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring — Interview Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090C;
+    --slide-bg: #0F1018;
+    --border: #1E2030;
+    --indigo: #5865F2;
+    --indigo2: #7B85F8;
+    --cream: #E8E4DC;
+    --text: #C0B8D0;
+    --text2: #60587A;
+    --green: #3DD68C;
+    --yellow: #F5C518;
+    --red: #E84545;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    display: flex; flex-direction: column;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    flex-shrink: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 2rem;
+    height: 50px;
+  }
+  .tb-left {
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text2);
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .tb-left a {
+    color: var(--indigo2); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .tb-left a:hover { color: var(--cream); }
+  .tb-title {
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--cream);
+  }
+  .tb-right { display: flex; gap: 0.5rem; align-items: center; }
+  .progress-text {
+    font-size: 0.7rem; color: var(--text2);
+    font-feature-settings: "tnum";
+    min-width: 50px; text-align: right;
+  }
+
+  /* ── SLIDE AREA ── */
+  .slide-area {
+    flex: 1; position: relative; overflow: hidden;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    background: var(--slide-bg);
+    padding: 4rem 6rem;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    opacity: 0; transform: translateX(60px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+  .slide.active {
+    opacity: 1; transform: translateX(0);
+    pointer-events: all;
+  }
+  .slide.exit {
+    opacity: 0; transform: translateX(-60px);
+    pointer-events: none;
+  }
+
+  /* slide number badge */
+  .slide-num {
+    position: absolute; top: 2rem; right: 2.5rem;
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    color: var(--text2); font-feature-settings: "tnum";
+  }
+
+  /* ── SLIDE: TITLE ── */
+  .slide-title-screen .eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--indigo2);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .slide-title-screen .eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--indigo); }
+  .slide-title-screen h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 7rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--cream); margin-bottom: 1rem;
+  }
+  .slide-title-screen h1 em {
+    font-style: italic; color: var(--indigo2);
+  }
+  .slide-title-screen .subtitle {
+    font-size: 1rem; color: var(--text2);
+    font-weight: 300; margin-bottom: 2rem;
+  }
+  .avail-chip {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(88,101,242,0.15);
+    border: 1px solid rgba(88,101,242,0.3);
+    color: var(--indigo2);
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    padding: 0.5rem 1rem; text-transform: uppercase;
+  }
+  .green-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    animation: gp 1.5s ease infinite;
+  }
+  @keyframes gp {
+    0%,100% { box-shadow: 0 0 0 0 rgba(61,214,140,0.4); }
+    50% { box-shadow: 0 0 0 5px rgba(61,214,140,0); }
+  }
+
+  /* ── SLIDE HEADINGS ── */
+  .slide-section-label {
+    font-size: 0.62rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--indigo2);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .slide-section-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--indigo); }
+  .slide-h {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700; color: var(--cream);
+    line-height: 1.1; margin-bottom: 2rem;
+  }
+
+  /* ── BIG STATS SLIDE ── */
+  .big-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .bs-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--indigo);
+    padding: 2rem 2rem 1.75rem;
+    transition: border-top-color 0.2s;
+  }
+  .bs-item:hover { border-top-color: var(--indigo2); }
+  .bs-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 700;
+    color: var(--yellow); line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .bs-label { font-size: 0.78rem; font-weight: 600; color: var(--cream); }
+  .bs-desc { font-size: 0.72rem; color: var(--text2); margin-top: 0.35rem; line-height: 1.5; }
+
+  /* ── TIMELINE SLIDE ── */
+  .tl { position: relative; padding-left: 2rem; }
+  .tl::before {
+    content: ''; position: absolute; left: 0; top: 4px; bottom: 4px;
+    width: 1px; background: linear-gradient(to bottom, var(--indigo), transparent);
+  }
+  .tl-item {
+    padding: 0 0 1.5rem 2rem; position: relative;
+  }
+  .tl-dot {
+    position: absolute; left: -5px; top: 5px;
+    width: 10px; height: 10px;
+    border-radius: 50%; background: var(--indigo);
+    border: 2px solid var(--slide-bg);
+  }
+  .tl-period { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--indigo2); margin-bottom: 0.2rem; }
+  .tl-role { font-size: 0.95rem; font-weight: 700; color: var(--cream); }
+  .tl-company { font-size: 0.78rem; color: var(--text2); }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+  .tl-tag {
+    font-size: 0.62rem; letter-spacing: 0.05em;
+    color: var(--text2); background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); padding: 0.15rem 0.5rem;
+  }
+
+  /* ── SKILL BARS SLIDE ── */
+  .skill-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .sb-row { }
+  .sb-head { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+  .sb-head .name { font-size: 0.78rem; font-weight: 500; color: var(--cream); }
+  .sb-head .pct { font-size: 0.68rem; color: var(--text2); }
+  .sb-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .sb-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(to right, var(--indigo), var(--indigo2));
+    transition: width 1s ease;
+  }
+
+  /* ── TOOLS GRID ── */
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .tool-chip {
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s;
+  }
+  .tool-chip:hover { border-color: var(--indigo); color: var(--indigo2); }
+  .tool-chip.featured { border-color: rgba(88,101,242,0.4); color: var(--indigo2); }
+
+  /* LANGUAGES */
+  .lang-grid-pp { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; }
+  .lp-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1rem; text-align: center;
+    transition: border-color 0.2s;
+  }
+  .lp-item:hover { border-color: var(--indigo); }
+  .lp-code {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--cream); line-height: 1;
+  }
+  .lp-lvl { font-size: 0.65rem; color: var(--indigo2); margin-top: 0.25rem; letter-spacing: 0.1em; }
+
+  /* DIFFERENTIATORS SLIDE */
+  .diff-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .diff-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .diff-card .dc-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .diff-card .dc-title { font-size: 0.9rem; font-weight: 700; color: var(--cream); margin-bottom: 0.35rem; }
+  .diff-card .dc-text { font-size: 0.78rem; color: var(--text2); line-height: 1.6; }
+
+  /* CLOSING SLIDE */
+  .closing-slide {
+    text-align: center; justify-content: center; align-items: center;
+  }
+  .closing-slide .big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 7rem);
+    font-weight: 700; color: var(--cream);
+    line-height: 1.05; margin-bottom: 1rem;
+  }
+  .closing-slide .big em { font-style: italic; color: var(--indigo2); }
+  .closing-slide p { color: var(--text2); font-size: 0.9rem; margin-bottom: 2rem; }
+  .closing-contact {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .cc-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 1rem 2rem; text-align: center;
+    min-width: 180px;
+  }
+  .cc-lbl { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text2); }
+  .cc-val { font-size: 0.88rem; font-weight: 600; color: var(--indigo2); margin-top: 0.25rem; }
+
+  /* ── BOTTOM CONTROLS ── */
+  .controls {
+    flex-shrink: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    height: 54px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 2rem;
+  }
+  .prog-bar {
+    flex: 1; height: 2px; background: var(--border);
+    margin: 0 2rem; border-radius: 1px; overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%; background: var(--indigo);
+    transition: width 0.4s ease;
+  }
+  .nav-btn {
+    background: none; border: 1px solid var(--border);
+    color: var(--text2); cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover:not(:disabled) { color: var(--cream); border-color: var(--indigo); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .slide-dots {
+    display: flex; gap: 0.4rem; align-items: center;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .dot.active { background: var(--indigo); transform: scale(1.4); }
+  .dot:hover:not(.active) { background: var(--text2); }
+
+  @media (max-width: 700px) {
+    .slide { padding: 3rem 2rem; }
+    .big-stats { grid-template-columns: 1fr; }
+    .skill-bars { grid-template-columns: 1fr; }
+    .diff-2col { grid-template-columns: 1fr; }
+    .lang-grid-pp { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="tb-left">
+    <a href="index-en.html">← Back</a>
+    <span>·</span>
+    <span class="tb-title">Tiago Leichsenring · Presentation Deck</span>
+  </div>
+  <div class="tb-right">
+    <span class="progress-text" id="progressText">1 / 9</span>
+  </div>
+</div>
+
+<!-- SLIDES CONTAINER -->
+<div class="slide-area">
+
+  <!-- SLIDE 1: TITLE -->
+  <div class="slide slide-title-screen active" data-slide="0">
+    <div class="slide-num">01 / 09</div>
+    <div class="eyebrow">Candidate Presentation · Senior Performance Marketing</div>
+    <h1>Tiago<br><em>Leichsenring</em></h1>
+    <p class="subtitle">Online Performance Marketing Manager · Berlin · Available June 2026</p>
+    <div class="avail-chip"><span class="green-dot"></span>Available from June 2026</div>
+  </div>
+
+  <!-- SLIDE 2: ACHIEVEMENTS -->
+  <div class="slide" data-slide="1">
+    <div class="slide-num">02 / 09</div>
+    <div class="slide-section-label">Measurable Results</div>
+    <h2 class="slide-h">Numbers<br>that speak.</h2>
+    <div class="big-stats">
+      <div class="bs-item">
+        <div class="bs-num">+200%</div>
+        <div class="bs-label">Customer Acquisition</div>
+        <div class="bs-desc">In year one at Linara GmbH through paid media optimisation.</div>
+      </div>
+      <div class="bs-item">
+        <div class="bs-num">−55pp</div>
+        <div class="bs-label">Less Junk Leads</div>
+        <div class="bs-desc">Lead quality lifted from 30% to 85% useful leads.</div>
+      </div>
+      <div class="bs-item">
+        <div class="bs-num">−80%</div>
+        <div class="bs-label">Unsuitable Applicants</div>
+        <div class="bs-desc">AI chatbot independently conceived, developed and deployed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: EXPERIENCE -->
+  <div class="slide" data-slide="2">
+    <div class="slide-num">03 / 09</div>
+    <div class="slide-section-label">Work Experience</div>
+    <h2 class="slide-h">6+ Years.<br>Three Platform Worlds.</h2>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Oct. 2022 — Apr. 2026</div>
+        <div class="tl-role">Online Performance Marketing Manager</div>
+        <div class="tl-company">Linara GmbH · Berlin</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Google Ads</span><span class="tl-tag">Meta Ads</span>
+          <span class="tl-tag">GA4·GTM·BigQuery</span><span class="tl-tag">AI Chatbot</span><span class="tl-tag">Taboola</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">May 2022 — Oct. 2022</div>
+        <div class="tl-role">Ad Solutions Support — TikTok Ads</div>
+        <div class="tl-company">TikTok · Berlin</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Jun. 2021 — Jan. 2022</div>
+        <div class="tl-role">Sales Performance Marketing Specialist</div>
+        <div class="tl-company">Concentrix (Meta) · Berlin</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">May 2020 — Jun. 2021</div>
+        <div class="tl-role">Online Marketing Support Specialist</div>
+        <div class="tl-company">Majorel (Google) · Berlin, DACH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: SKILLS -->
+  <div class="slide" data-slide="3">
+    <div class="slide-num">04 / 09</div>
+    <div class="slide-section-label">Skills</div>
+    <h2 class="slide-h">Competency Profile.</h2>
+    <div class="skill-bars">
+      <div class="sb-row"><div class="sb-head"><span class="name">Google Ads</span><span class="pct">95%</span></div><div class="sb-bar"><div class="sb-fill" style="width:95%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">Meta Ads</span><span class="pct">92%</span></div><div class="sb-bar"><div class="sb-fill" style="width:92%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">GA4 · GTM · BigQuery</span><span class="pct">90%</span></div><div class="sb-bar"><div class="sb-fill" style="width:90%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">Marketing Strategy · STP</span><span class="pct">85%</span></div><div class="sb-bar"><div class="sb-fill" style="width:85%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">Python · Flask · AI Chatbot</span><span class="pct">78%</span></div><div class="sb-bar"><div class="sb-fill" style="width:78%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">HTML5 · CSS3 · JS</span><span class="pct">75%</span></div><div class="sb-bar"><div class="sb-fill" style="width:75%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">Technical SEO</span><span class="pct">72%</span></div><div class="sb-bar"><div class="sb-fill" style="width:72%"></div></div></div>
+      <div class="sb-row"><div class="sb-head"><span class="name">Prompt Engineering</span><span class="pct">83%</span></div><div class="sb-bar"><div class="sb-fill" style="width:83%"></div></div></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: TOOLS -->
+  <div class="slide" data-slide="4">
+    <div class="slide-num">05 / 09</div>
+    <div class="slide-section-label">Tools &amp; Platforms</div>
+    <h2 class="slide-h">The Technical Arsenal.</h2>
+    <div class="tools-grid">
+      <div class="tool-chip featured">Google Ads</div>
+      <div class="tool-chip featured">Meta Ads</div>
+      <div class="tool-chip featured">GA4</div>
+      <div class="tool-chip featured">GTM</div>
+      <div class="tool-chip featured">BigQuery</div>
+      <div class="tool-chip featured">SQL</div>
+      <div class="tool-chip">Looker Studio</div>
+      <div class="tool-chip">Taboola</div>
+      <div class="tool-chip">Bing Ads</div>
+      <div class="tool-chip">LinkedIn Ads</div>
+      <div class="tool-chip">TikTok Ads</div>
+      <div class="tool-chip featured">Python · Flask</div>
+      <div class="tool-chip featured">AI Chatbot Dev</div>
+      <div class="tool-chip">HTML5 · CSS3 · JS</div>
+      <div class="tool-chip">Claude AI</div>
+      <div class="tool-chip">Cursor</div>
+      <div class="tool-chip">Ideogram</div>
+      <div class="tool-chip">Technical SEO</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: DIFFERENTIATORS -->
+  <div class="slide" data-slide="5">
+    <div class="slide-num">06 / 09</div>
+    <div class="slide-section-label">Differentiation</div>
+    <h2 class="slide-h">What sets him apart.</h2>
+    <div class="diff-2col">
+      <div class="diff-card">
+        <div class="dc-icon">🔧</div>
+        <div class="dc-title">Strategist + Builder</div>
+        <div class="dc-text">Plans marketing strategies and executes them himself — including Python chatbots. No gap between concept and delivery.</div>
+      </div>
+      <div class="diff-card">
+        <div class="dc-icon">📊</div>
+        <div class="dc-title">Analytics Architect</div>
+        <div class="dc-text">GA4+GTM+BigQuery+Looker Studio fully self-built. Decision-ready data — no black boxes.</div>
+      </div>
+      <div class="diff-card">
+        <div class="dc-icon">🏛️</div>
+        <div class="dc-title">Big-Three Background</div>
+        <div class="dc-text">Platform-side experience at Google (Majorel), Meta (Concentrix) and TikTok. He knows the mechanics from the inside.</div>
+      </div>
+      <div class="diff-card">
+        <div class="dc-icon">🤖</div>
+        <div class="dc-title">AI-First</div>
+        <div class="dc-text">AI chatbot built from 0 to production. Prompt engineering embedded in daily workflow. No learning curve, immediately deployable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: LANGUAGES -->
+  <div class="slide" data-slide="6">
+    <div class="slide-num">07 / 09</div>
+    <div class="slide-section-label">Languages</div>
+    <h2 class="slide-h">Five Languages.<br>Three Continents.</h2>
+    <div class="lang-grid-pp">
+      <div class="lp-item"><div class="lp-code">PT</div><div class="lp-lvl">Native</div></div>
+      <div class="lp-item"><div class="lp-code">DE</div><div class="lp-lvl">C2</div></div>
+      <div class="lp-item"><div class="lp-code">EN</div><div class="lp-lvl">C1</div></div>
+      <div class="lp-item"><div class="lp-code">IT</div><div class="lp-lvl">C1</div></div>
+      <div class="lp-item"><div class="lp-code">ES</div><div class="lp-lvl">B1</div></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: EDUCATION & TRAINING -->
+  <div class="slide" data-slide="7">
+    <div class="slide-num">08 / 09</div>
+    <div class="slide-section-label">Education &amp; Training</div>
+    <h2 class="slide-h">Foundation.<br>Continuously built.</h2>
+    <div class="diff-2col" style="margin-top:2rem;">
+      <div class="diff-card">
+        <div class="dc-icon">🎓</div>
+        <div class="dc-title">Degree · UFPR Curitiba</div>
+        <div class="dc-text">Teaching Degree — German as a Foreign Language · 2004–2009 · Linguistics, Literary &amp; Educational Science with didactic focus</div>
+      </div>
+      <div class="diff-card">
+        <div class="dc-icon">📚</div>
+        <div class="dc-title">Further Training 2025 · OMT</div>
+        <div class="dc-text">Online Marketing Strategy · Reachx, Frankfurt · Sep. 2025<br>SEO Deep Dive · SEOCATION · Jul. 2025</div>
+      </div>
+      <div class="diff-card">
+        <div class="dc-icon">💻</div>
+        <div class="dc-title">Self-study</div>
+        <div class="dc-text">JavaScript · Java (Android) · First Aid (certified) · Fire Safety (certified)</div>
+      </div>
+      <div class="diff-card">
+        <div class="dc-icon">🤝</div>
+        <div class="dc-title">Volunteer Work</div>
+        <div class="dc-text">Registered Association (current) · Childcare Worker Curitiba 2012–2015 · Refugee Course 2014–2015 · WWOOF IT/IE/FR/DE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CLOSING -->
+  <div class="slide closing-slide" data-slide="8">
+    <div class="slide-num">09 / 09</div>
+    <div class="big">Ready.<br><em>From June 2026.</em></div>
+    <p>Berlin-based · Remote possible · Full-time · 5 Languages · EU Citizen</p>
+    <div class="closing-contact">
+      <div class="cc-item"><div class="cc-lbl">Email</div><div class="cc-val">tiagoleichs@gmail.com</div></div>
+      <div class="cc-item"><div class="cc-lbl">Location</div><div class="cc-val">Berlin 13509</div></div>
+      <div class="cc-item"><div class="cc-lbl">LinkedIn</div><div class="cc-val">tiago-leichsenring-34134536</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="nav-btn" id="prevBtn" disabled>← Back</button>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:11.1%"></div></div>
+  <div class="slide-dots" id="dots"></div>
+  <div class="prog-bar" style="display:none"></div>
+  <button class="nav-btn" id="nextBtn">Next →</button>
+</div>
+
+<script>
+  const slides=document.querySelectorAll('.slide');
+  const prevBtn=document.getElementById('prevBtn');
+  const nextBtn=document.getElementById('nextBtn');
+  const progFill=document.getElementById('progFill');
+  const progressText=document.getElementById('progressText');
+  const dotsContainer=document.getElementById('dots');
+  const total=slides.length;
+  let current=0;
+  slides.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    d.addEventListener('click',()=>goTo(i));
+    dotsContainer.appendChild(d);
+  });
+  function goTo(n){
+    slides[current].className='slide exit';
+    setTimeout(()=>{slides[current].classList.remove('exit');},400);
+    current=n;
+    slides[current].className='slide active';
+    update();
+    if(current===3){document.querySelectorAll('.sb-fill').forEach(el=>{const w=el.style.width;el.style.width='0';setTimeout(()=>{el.style.width=w;},50);});}
+  }
+  function update(){
+    prevBtn.disabled=current===0;
+    nextBtn.disabled=current===total-1;
+    progFill.style.width=((current+1)/total*100)+'%';
+    progressText.textContent=(current+1)+' / '+total;
+    dotsContainer.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i===current);});
+  }
+  prevBtn.addEventListener('click',()=>{if(current>0)goTo(current-1);});
+  nextBtn.addEventListener('click',()=>{if(current<total-1)goTo(current+1);});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){if(current<total-1)goTo(current+1);}
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){if(current>0)goTo(current-1);}
+  });
+</script>
+</body>
+</html>

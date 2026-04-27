@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring — CV Formats</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090A;
+    --surface: #111113;
+    --border: #1E1E22;
+    --gold: #C9974A;
+    --gold-dim: #6A5030;
+    --text: #E8E6E0;
+    --muted: #55534E;
+    --white: #F5F3EE;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  header {
+    padding: 48px 64px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .header-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .header-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .lang-switch {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .lang-switch:hover { color: var(--gold); border-color: var(--gold-dim); }
+  main { padding: 0; }
+  .cv-list { display: grid; grid-template-columns: 1fr; }
+  .cv-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 120px;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    padding: 0 64px;
+  }
+  .cv-row:hover { background: #0E0E10; }
+  .cv-row:hover .cv-arrow { opacity: 1; transform: translateX(0); }
+  .cv-row:hover .cv-title { color: var(--white); }
+  .cv-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+    padding: 36px 0;
+    user-select: none;
+  }
+  .cv-body {
+    padding: 36px 48px 36px 32px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .cv-funnel-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .cv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #C8C5BC;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+    letter-spacing: -0.01em;
+  }
+  .cv-desc { font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 560px; }
+  .cv-arrow {
+    font-size: 22px;
+    color: var(--gold);
+    text-align: right;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.15s, transform 0.2s;
+  }
+  footer {
+    padding: 28px 64px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-contact {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    gap: 32px;
+  }
+  .footer-contact a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  .footer-contact a:hover { color: var(--gold); }
+  .footer-avail {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .avail-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4AE87A;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @media (max-width: 700px) {
+    header, footer { padding: 32px 24px; }
+    .cv-row { padding: 0 24px; grid-template-columns: 40px 1fr 48px; }
+    .cv-body { padding: 28px 20px 28px 16px; }
+    .cv-title { font-size: 20px; }
+    .cv-arrow { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-name">Tiago Leichsenring</div>
+  <div style="display:flex;align-items:center;gap:24px;">
+    <div class="header-label">Select a CV format</div>
+    <a href="index.html" class="lang-switch">DE</a>
+  </div>
+</header>
+<main>
+  <div class="cv-list">
+    <a href="CV-topfunnel-en.html" class="cv-row">
+      <div class="cv-num">01</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Top of Funnel · Awareness</div>
+        <div class="cv-title">Poster Format</div>
+        <div class="cv-desc">Maximum attention, minimum friction. Big numbers, clear statement — for the first impression.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+    <a href="CV-middlefunnel-en.html" class="cv-row">
+      <div class="cv-num">02</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Middle of Funnel · Consideration</div>
+        <div class="cv-title">Case Study Format</div>
+        <div class="cv-desc">Proof, numbers, differentiation. Case studies with methodology and results — for HR managers who compare.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+    <a href="CV-bottonfunnel-en.html" class="cv-row">
+      <div class="cv-num">03</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Bottom of Funnel · Decision</div>
+        <div class="cv-title">Ready to Hire Format</div>
+        <div class="cv-desc">Availability, trust, clear CTA. Every question answered before it's asked.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+    <a href="CV-classic-en.html" class="cv-row">
+      <div class="cv-num">04</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Standard · Print-ready</div>
+        <div class="cv-title">Classic Format</div>
+        <div class="cv-desc">Clean, printable, timeless. For ATS systems and formal application processes.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+    <a href="CV-Story-telling-en.html" class="cv-row">
+      <div class="cv-num">05</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Narrative · Editorial</div>
+        <div class="cv-title">Storytelling Format</div>
+        <div class="cv-desc">The career path as a story. Chapters, turning points, epilogue — for creative companies and decision-makers who read.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+    <a href="CV-RPG-en.html" class="cv-row">
+      <div class="cv-num">06</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Creative · Gamified</div>
+        <div class="cv-title">RPG Character Sheet</div>
+        <div class="cv-desc">Skills as attributes, jobs as quests, achievements as trophies. For teams with personality.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+    <a href="CV-powerpoint-en.html" class="cv-row">
+      <div class="cv-num">07</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Presentation · Slide Deck</div>
+        <div class="cv-title">Interview Deck Format</div>
+        <div class="cv-desc">9 slides, keyboard navigation. For interviews where you present yourself.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+  </div>
+</main>
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:tiagoleichs@gmail.com">tiagoleichs@gmail.com</a>
+    <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank">LinkedIn</a>
+    <span>Berlin 13509</span>
+  </div>
+  <div class="footer-avail">
+    <div class="avail-dot"></div>
+    Available from June 2026
+  </div>
+</footer>
+</body>
+</html>

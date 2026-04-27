@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring — Die Geschichte</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --ink: #1C1814;
+    --ink2: #3D3830;
+    --ink3: #7A7060;
+    --accent: #8B4513;
+    --accent2: #A0522D;
+    --rule: #DDD5C8;
+    --cap-bg: #1C1814;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    line-height: 1.9;
+  }
+
+  /* back */
+  .back-btn {
+    position: fixed; top: 1.5rem; left: 1.5rem;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3); text-decoration: none;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s; z-index: 100;
+  }
+  .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* CHAPTER COVER */
+  .chapter-cover {
+    min-height: 100vh;
+    background: var(--cap-bg);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .chapter-cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(139,69,19,0.15) 0%, transparent 70%);
+  }
+  .cover-eyebrow {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 2rem;
+    position: relative;
+  }
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: #F0E8D8;
+    line-height: 1.05; margin-bottom: 1rem;
+    position: relative;
+  }
+  .cover-title em {
+    display: block; font-style: italic;
+    color: #C9952A;
+  }
+  .cover-sub {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.9rem; color: #7A7060;
+    letter-spacing: 0.05em; margin-bottom: 3rem;
+    position: relative;
+  }
+  .scroll-hint {
+    position: relative;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #4A4038;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: bounce 2s ease infinite;
+  }
+  .scroll-hint::after {
+    content: '↓'; font-size: 1.2rem; color: var(--accent2);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* CONTENT WRAPPER */
+  .story-body { max-width: 680px; margin: 0 auto; padding: 5rem 2rem; }
+
+  /* CHAPTER HEADER */
+  .chapter-head {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    margin-bottom: 2rem; padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ch-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem; line-height: 1;
+    color: var(--rule); flex-shrink: 0;
+    margin-top: -0.5rem;
+  }
+  .ch-meta {}
+  .ch-label {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+  .ch-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--ink);
+    line-height: 1.2;
+  }
+  .ch-period {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.8rem; color: var(--ink3);
+    margin-top: 0.3rem; font-style: italic;
+  }
+
+  /* STORY PARAGRAPHS */
+  .story p {
+    margin-bottom: 1.25rem; color: var(--ink2);
+  }
+  .story p:first-of-type::first-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem; float: left;
+    line-height: 0.8; margin: 0.15em 0.15em 0 0;
+    color: var(--ink);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .pull-quote cite {
+    display: block; margin-top: 0.5rem;
+    font-size: 0.78rem; color: var(--ink3);
+    font-style: normal; font-family: 'Karla', sans-serif;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* METRIC CALLOUT */
+  .metric-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin: 2rem 0;
+  }
+  .metric-box {
+    background: var(--cap-bg);
+    color: #D4C4A0;
+    padding: 1.5rem;
+  }
+  .metric-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem; color: #C9952A;
+    line-height: 1;
+  }
+  .metric-lbl {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #7A7060;
+    margin-top: 0.25rem;
+  }
+
+  /* INTERLUDE */
+  .interlude {
+    text-align: center; padding: 4rem 2rem;
+    background: var(--cap-bg);
+    color: #D4C4A0;
+    margin: 0;
+  }
+  .interlude .int-label {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+  .interlude .int-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-style: italic;
+    max-width: 600px; margin: 0 auto;
+    line-height: 1.4; color: #EDE5D4;
+  }
+
+  /* SKILLS AS LIST */
+  .skill-two-col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .skill-item-story {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.85rem; color: var(--ink2);
+  }
+  .skill-item-story::before { content: '—'; color: var(--accent); }
+
+  /* CHAPTER DIVIDER */
+  .ch-divider {
+    text-align: center; padding: 3rem 2rem;
+    color: var(--rule); font-size: 1.2rem;
+    letter-spacing: 0.75rem;
+  }
+
+  /* EPILOGUE */
+  .epilogue {
+    background: var(--cap-bg);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .epilogue h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #EDE5D4;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .epilogue p {
+    font-family: 'Karla', sans-serif;
+    max-width: 500px; margin: 0 auto 2rem;
+    color: #7A7060; line-height: 1.7;
+  }
+  .epilogue .cta-link {
+    display: inline-block;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid rgba(160,82,45,0.4);
+    padding: 1rem 2rem; text-decoration: none;
+    transition: all 0.3s;
+    margin: 0.5rem;
+  }
+  .epilogue .cta-link:hover {
+    background: rgba(160,82,45,0.1);
+    color: #D4A060;
+    border-color: rgba(160,82,45,0.7);
+  }
+
+  /* LANG TABLE */
+  .lang-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  .lang-table td {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'Karla', sans-serif;
+    font-size: 0.9rem;
+  }
+  .lang-table td:first-child { color: var(--accent); font-weight: 600; width: 40px; }
+  .lang-table td:last-child { color: var(--ink3); text-align: right; }
+
+  @media (max-width: 600px) {
+    .metric-row { grid-template-columns: 1fr; }
+    .skill-two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" class="back-btn">← Zurück</a>
+
+<!-- COVER -->
+<div class="chapter-cover">
+  <div class="cover-eyebrow">Eine Karriere — erzählt</div>
+  <h1 class="cover-title">
+    Tiago<br>
+    <em>Leichsenring</em>
+  </h1>
+  <p class="cover-sub">Senior Online Performance Marketing Manager · Berlin · Ab Juni 2026</p>
+  <div class="scroll-hint">Scroll</div>
+</div>
+
+<!-- PROLOGUE -->
+<div class="story-body">
+  <div class="chapter-head">
+    <div class="ch-num">0</div>
+    <div class="ch-meta">
+      <div class="ch-label">Prolog</div>
+      <div class="ch-title">Der Anfang liegt weit weg</div>
+      <div class="ch-period">Curitiba, Brasilien → Berlin, Deutschland</div>
+    </div>
+  </div>
+  <div class="story">
+    <p>Er kam nicht aus dem Marketing. Er kam aus dem Klassenzimmer. Jahrelang unterrichtete Tiago Deutsch und Portugiesisch als Fremdsprachen — in Curitiba, später in Berlin. Hinter ihm: ein Studium der Sprach-, Literatur- und Erziehungswissenschaft an der Universidade Federal do Paraná. Vor ihm: die Frage, wie Sprache tatsächlich wirkt.</p>
+    <p>Er lernte, wie Menschen denken. Wie sie lernen. Warum manche Botschaften hängen bleiben und andere nicht. Nebenher: Freiwilligenarbeit als Erzieher, ein Kurs für Flüchtlinge, Monate als WWOOFer in Italien, Irland, Frankreich und Deutschland — ein Mensch, der sich in Bewegung bringt.</p>
+    <p>Was er noch nicht wusste: All das würde die Grundlage für alles andere sein.</p>
+  </div>
+</div>
+
+<div class="ch-divider">· · ·</div>
+
+<!-- CHAPTER 1 -->
+<div class="story-body">
+  <div class="chapter-head">
+    <div class="ch-num">1</div>
+    <div class="ch-meta">
+      <div class="ch-label">Kapitel Eins</div>
+      <div class="ch-title">Die Plattformen</div>
+      <div class="ch-period">2020 — 2022 · Google, Meta, TikTok</div>
+    </div>
+  </div>
+  <div class="story">
+    <p>Den Einstieg ins Performance Marketing machte er bei Majorel — als Support-Spezialist im Auftrag von Google. Search-Kampagnen, Shopping-Feeds, Merchant Center, Analytics. Er lernte nicht nur die Tools — er lernte das Denken dahinter. Wie Algorithmen Gebotsstrategien interpretieren. Warum Tracking der unsichtbare Nerv jeder Kampagne ist.</p>
+    <p>Dann kam Meta. Bei Concentrix, als Vendor für Facebook, betreute er DACH-Werbetreibende — baute Werbekonten auf, implementierte Pixel, beriet zu Conversion-Events. E-Commerce. Lead-Gen. Den Unterschied zwischen einer Kampagne, die läuft, und einer, die etwas bewirkt.</p>
+    <p>Kurz darauf: TikTok. Eine neue Plattform, neue Mechaniken, neue Fragen. Diagnose von Ausspielungsproblemen, Abrechnung, technischem Support.</p>
+  </div>
+
+  <div class="pull-quote">
+    „Ich habe bei den großen Plattformen gearbeitet — nicht um dort zu bleiben, sondern um zu verstehen, wie sie wirklich funktionieren."
+    <cite>— Tiago über seine frühen Jahre</cite>
+  </div>
+</div>
+
+<div class="interlude">
+  <div class="int-label">Zwischenbilanz · 2020–2022</div>
+  <div class="int-quote">"Drei Plattformen. Google, Meta, TikTok. Drei verschiedene Welten — ein gemeinsamer Kern: Daten lügen nicht, wenn man weiß, wie man zuhört."</div>
+</div>
+
+<!-- CHAPTER 2 -->
+<div class="story-body">
+  <div class="chapter-head">
+    <div class="ch-num">2</div>
+    <div class="ch-meta">
+      <div class="ch-label">Kapitel Zwei</div>
+      <div class="ch-title">Das eigentliche Spiel beginnt</div>
+      <div class="ch-period">Oktober 2022 · Linara GmbH, Berlin</div>
+    </div>
+  </div>
+  <div class="story">
+    <p>Bei Linara GmbH wurde aus dem Support-Experten der Stratege. Zum ersten Mal: volle Verantwortung. Kein großes Unternehmen im Rücken. Nur die Frage: Wie gewinnt man Kunden im deutschen 24-Stunden-Pflegemarkt?</p>
+    <p>Die Antwort lag nicht in einem einzigen Kanal. Sie lag im System dahinter. Tiago baute die gesamte Analytics-Infrastruktur neu auf — GA4, GTM, BigQuery, SQL, Looker Studio. Nicht als Selbstzweck. Sondern weil man ohne saubere Daten keine Entscheidungen treffen kann, die sich lohnen.</p>
+    <p>Er optimierte Google Ads, Meta Ads, Taboola, Bing. Kampagnenstruktur, Zielgruppen, Landing Pages. Parallel: Job-Anzeigen für FairCare, das Schwesterunternehmen, das Pflegekräfte aus Polen, Rumänien, Ungarn und Bulgarien rekrutiert.</p>
+  </div>
+
+  <div class="metric-row">
+    <div class="metric-box">
+      <div class="metric-num">+200%</div>
+      <div class="metric-lbl">Kundengewinnung im ersten Jahr</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-num">70→15%</div>
+      <div class="metric-lbl">Schrott-Lead-Rate gesenkt</div>
+    </div>
+  </div>
+</div>
+
+<div class="ch-divider">· · ·</div>
+
+<!-- CHAPTER 3 -->
+<div class="story-body">
+  <div class="chapter-head">
+    <div class="ch-num">3</div>
+    <div class="ch-meta">
+      <div class="ch-label">Kapitel Drei</div>
+      <div class="ch-title">Als er einen Chatbot baute</div>
+      <div class="ch-period">2023 — 2024 · Python, Flask, KI</div>
+    </div>
+  </div>
+  <div class="story">
+    <p>Das Problem war einfach zu verstehen: 70 Prozent aller eingehenden Leads waren wertlos. Falsche Zielgruppe, falsche Absicht, falsche Erwartungen. Jede Stunde, die das Vertriebsteam damit verbrachte, diese Leads zu qualifizieren, war eine verlorene Stunde.</p>
+    <p>Die Lösung, die Tiago sich vorstellte, war radikal: ein KI-Chatbot, der das Problem an der Quelle löst. Nicht als fertig gekauftes Tool — sondern von Grund auf selbst konzipiert, geplant, in Python und Flask gebaut und gelauncht. WhatsApp, Telegram, Messenger, Webchat.</p>
+    <p>Das Ergebnis: circa 80 Prozent nicht qualifizierter Leads werden seitdem automatisch herausgefiltert, bevor sie ein Mensch zu Gesicht bekommt.</p>
+  </div>
+
+  <div class="pull-quote">
+    "Ausgedacht — geplant — gebaut — gelauncht. Manchmal ist der direkteste Weg der, den man selbst baut."
+  </div>
+</div>
+
+<div class="interlude">
+  <div class="int-label">Das Besondere</div>
+  <div class="int-quote">"Die Überschneidung zwischen Lehrer und Marketer: Beide verstehen Zielgruppen. Beide müssen komplexe Botschaften einfach machen. Beide messen, ob ihre Arbeit gewirkt hat."</div>
+</div>
+
+<!-- CHAPTER 4: SKILLS -->
+<div class="story-body">
+  <div class="chapter-head">
+    <div class="ch-num">4</div>
+    <div class="ch-meta">
+      <div class="ch-label">Kapitel Vier</div>
+      <div class="ch-title">Was er mitbringt</div>
+      <div class="ch-period">Das Handwerkszeug</div>
+    </div>
+  </div>
+  <div class="story">
+    <p>Fünf Sprachen, drei Plattformwelten, ein selbst gebauter KI-Chatbot. Ein Analytiker, der Strategie kann. Ein Stratege, der selbst baut. Das ist selten.</p>
+  </div>
+
+  <div class="skill-two-col">
+    <div class="skill-item-story">Google Ads · Meta Ads</div>
+    <div class="skill-item-story">GA4 + GTM + BigQuery</div>
+    <div class="skill-item-story">SQL · Looker Studio</div>
+    <div class="skill-item-story">Python · Flask</div>
+    <div class="skill-item-story">Marketingstrategie · STP</div>
+    <div class="skill-item-story">KI-Chatbot-Entwicklung</div>
+    <div class="skill-item-story">Technisches SEO</div>
+    <div class="skill-item-story">Prompt Engineering</div>
+    <div class="skill-item-story">Taboola · Bing · LinkedIn</div>
+    <div class="skill-item-story">HTML5 · CSS3 · JS</div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <table class="lang-table">
+      <tr><td>PT</td><td>Portugiesisch</td><td>Muttersprache</td></tr>
+      <tr><td>DE</td><td>Deutsch</td><td>C2 — verhandlungssicher</td></tr>
+      <tr><td>EN</td><td>Englisch</td><td>C1</td></tr>
+      <tr><td>IT</td><td>Italienisch</td><td>C1</td></tr>
+      <tr><td>ES</td><td>Spanisch</td><td>B1</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="ch-divider">· · ·</div>
+
+<!-- CHAPTER 5: TRAINING & FORMATION -->
+<div class="story-body">
+  <div class="chapter-head">
+    <div class="ch-num">5</div>
+    <div class="ch-meta">
+      <div class="ch-label">Kapitel Fünf</div>
+      <div class="ch-title">Er hört nicht auf zu lernen</div>
+      <div class="ch-period">2025 · OMT Frankfurt &amp; Online</div>
+    </div>
+  </div>
+  <div class="story">
+    <p>Während Linara lief, blieb er nicht stehen. 2025 belegte er zwei Weiterbildungen beim Online Marketing Tag: Online-Marketingstrategie bei Reachx in Frankfurt und SEO Deep Dive bei SEOCATION. Nicht weil er es musste — sondern weil ein Profi weiß, dass jedes Modell irgendwann veraltet.</p>
+    <p>JavaScript und Java für Android — Selbststudium. Erste Hilfe, Brandschutz — Zertifikate, die niemand anfragt, aber die zeigen, wie jemand denkt: vollständig, nicht nur in der eigenen Domäne.</p>
+  </div>
+</div>
+
+<!-- EPILOGUE -->
+<div class="epilogue">
+  <h2>Das nächste Kapitel<br>ist noch nicht geschrieben.</h2>
+  <p>Ab Juni 2026 sucht Tiago die nächste Aufgabe — als Senior Performance Marketing Manager, der nicht nur Kampagnen optimiert, sondern Systeme baut.</p>
+  <a href="mailto:tiagoleichs@gmail.com" class="cta-link">Kontakt aufnehmen</a>
+  <a href="index.html" class="cta-link">← Zurück zur Übersicht</a>
+</div>
+
+</body>
+</html>

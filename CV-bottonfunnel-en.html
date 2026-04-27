@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring — Ready to Hire</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FAFAF8;--ink:#111110;--ink2:#3A3830;--ink3:#7A7870;--green:#1A7A4A;--green-light:#E8F5EE;--green-bg:#F0FAF5;--rule:#E4E0D8;--accent:#2A6B40;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;}
+  .back-btn{position:fixed;top:1.5rem;left:1.5rem;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);text-decoration:none;background:white;border:1px solid var(--rule);padding:0.5rem 1rem;z-index:100;transition:all 0.2s;}
+  .back-btn:hover{color:var(--accent);border-color:var(--accent);}
+  .sticky-bar{position:fixed;top:0;left:0;right:0;background:var(--ink);color:white;padding:0.75rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;transform:translateY(-100%);transition:transform 0.3s ease;}
+  .sticky-bar.visible{transform:translateY(0);}
+  .sticky-bar .sb-text{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:#E8E0D0;}
+  .sticky-bar .sb-cta{background:var(--green);color:white;text-decoration:none;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.75rem;transition:background 0.2s;}
+  .sticky-bar .sb-cta:hover{background:#14643C;}
+  .hero{padding:6rem 5rem 4rem;background:white;border-bottom:1px solid var(--rule);}
+  .avail-banner{display:inline-flex;align-items:center;gap:0.5rem;background:var(--green-light);color:var(--green);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:2rem;}
+  .avail-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-green 1.5s ease infinite;}
+  @keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(26,122,74,0.4);}50%{box-shadow:0 0 0 6px rgba(26,122,74,0);}}
+  .hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:800;line-height:1.05;color:var(--ink);margin-bottom:0.5rem;}
+  .hero-role{font-size:1rem;color:var(--ink3);margin-bottom:2.5rem;font-weight:300;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+  .hero-body p{color:var(--ink2);margin-bottom:1rem;font-size:0.93rem;line-height:1.7;}
+  .hero-contact{background:var(--ink);padding:2rem;}
+  .hc-label{font-family:'Syne',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#7A7060;margin-bottom:1.25rem;}
+  .hc-main{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:#F0E8D8;margin-bottom:0.25rem;}
+  .hc-sub{font-size:0.8rem;color:#5A5448;margin-bottom:1.5rem;}
+  .contact-btn{display:block;width:100%;background:var(--green);color:white;text-decoration:none;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem;text-align:center;transition:background 0.2s;margin-bottom:0.75rem;}
+  .contact-btn:hover{background:#14643C;}
+  .contact-btn.secondary{background:transparent;border:1px solid #2A2820;color:#7A7060;}
+  .contact-btn.secondary:hover{background:#1A1814;color:#D4C8B0;}
+  .why-now{background:var(--green-bg);border:1px solid #C8E8D4;padding:2rem;margin-top:1.5rem;}
+  .why-now h3{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+  .why-now h3::before{content:'✓';}
+  .why-now ul{list-style:none;}
+  .why-now ul li{font-size:0.82rem;color:var(--ink2);padding:0.35rem 0;border-bottom:1px solid #D4EDDA;display:flex;gap:0.6rem;}
+  .why-now ul li:last-child{border-bottom:none;}
+  .why-now ul li::before{content:'→';color:var(--green);flex-shrink:0;}
+  .proof-section{padding:4rem 5rem;border-bottom:1px solid var(--rule);}
+  .proof-label{font-family:'Syne',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+  .proof-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+  .proof-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .proof-item{background:white;padding:2rem 1.5rem;}
+  .proof-check{width:28px;height:28px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--green);margin-bottom:1rem;}
+  .proof-title{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:0.35rem;}
+  .proof-text{font-size:0.78rem;color:var(--ink3);line-height:1.5;}
+  .deliv-section{padding:4rem 5rem;border-bottom:1px solid var(--rule);background:white;}
+  .deliv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .deliv-item{display:flex;gap:1rem;background:var(--bg);border:1px solid var(--rule);padding:1.25rem 1.5rem;align-items:flex-start;}
+  .deliv-icon{font-size:1.2rem;flex-shrink:0;margin-top:0.1rem;}
+  .deliv-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--ink);margin-bottom:0.25rem;}
+  .deliv-text{font-size:0.78rem;color:var(--ink3);}
+  .facts-section{padding:4rem 5rem;border-bottom:1px solid var(--rule);}
+  .facts-table{width:100%;}
+  .fact-row{display:grid;grid-template-columns:180px 1fr;padding:0.9rem 0;border-bottom:1px solid var(--rule);font-size:0.88rem;}
+  .fact-row:last-child{border-bottom:none;}
+  .fact-key{font-weight:600;color:var(--ink);}
+  .fact-val{color:var(--ink2);}
+  .fact-val .tag{display:inline-block;font-size:0.7rem;background:var(--green-light);color:var(--green);border:1px solid #C8E8D4;padding:0.15rem 0.5rem;margin-right:0.3rem;}
+  .final-cta{background:var(--ink);padding:5rem;text-align:center;}
+  .final-cta h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:800;color:#F0E8D8;margin-bottom:1rem;line-height:1.2;}
+  .final-cta p{color:#5A5448;font-size:0.9rem;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;}
+  .final-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .final-btn{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1.1rem 2.5rem;text-decoration:none;transition:all 0.2s;}
+  .final-btn.primary{background:var(--green);color:white;}
+  .final-btn.primary:hover{background:#14643C;}
+  .final-btn.ghost{border:1px solid #2A2820;color:#7A7060;}
+  .final-btn.ghost:hover{border-color:#5A5448;color:#C4B8A0;}
+  @media(max-width:780px){.hero{padding:4rem 2rem 3rem;}.hero-grid{grid-template-columns:1fr;}.proof-section,.deliv-section,.facts-section{padding:3rem 2rem;}.proof-grid{grid-template-columns:1fr 1fr;}.deliv-grid{grid-template-columns:1fr;}.final-cta{padding:3rem 2rem;}.sticky-bar{padding:0.75rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="sticky-bar" id="stickyBar">
+  <span class="sb-text">Tiago Leichsenring · Available from June 2026</span>
+  <a href="mailto:tiagoleichs@gmail.com" class="sb-cta">Reach out now</a>
+</div>
+<a href="index-en.html" class="back-btn">← Back</a>
+
+<div class="hero" id="heroSection">
+  <div class="avail-banner"><span class="avail-dot"></span>Available from June 2026</div>
+  <h1 class="hero-name">Tiago Leichsenring</h1>
+  <p class="hero-role">Senior Online Performance Marketing Manager · Berlin</p>
+  <div class="hero-grid">
+    <div class="hero-body">
+      <p>3.5 years as the sole performance marketing lead at Linara GmbH. Analytics infrastructure built from scratch. AI chatbot conceived, developed, launched. Results that are measurable: +200% customer acquisition, junk leads pushed from 70% to 15%.</p>
+      <p>No theory. He built paid channels, set tracking architectures and solved problems that others need external developers for.</p>
+      <div class="why-now">
+        <h3>Why now is the right moment</h3>
+        <ul>
+          <li>Completed phase at Linara — ready for new challenge from June 2026</li>
+          <li>3.5 years sole responsibility — immediately applicable in a team or as lead</li>
+          <li>Berlin-based, remote-experienced, 5 languages for international environments</li>
+          <li>AI tooling embedded in daily workflow — no learning curve for the employer</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="hero-contact">
+        <div class="hc-label">Reach out directly</div>
+        <div class="hc-main">tiagoleichs@gmail.com</div>
+        <div class="hc-sub">Typically responds within 24h</div>
+        <a href="mailto:tiagoleichs@gmail.com" class="contact-btn">Send an email</a>
+        <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank" class="contact-btn secondary">Open LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="proof-section">
+  <div class="proof-label">Proven Competence</div>
+  <div class="proof-grid">
+    <div class="proof-item"><div class="proof-check">✓</div><div class="proof-title">+200% Customer Acquisition</div><div class="proof-text">In the first full year at Linara GmbH — through optimisation of all paid channels.</div></div>
+    <div class="proof-item"><div class="proof-check">✓</div><div class="proof-title">Lead Quality Tripled</div><div class="proof-text">Junk rate cut from 70% to 15% through AI qualification and campaign optimisation.</div></div>
+    <div class="proof-item"><div class="proof-check">✓</div><div class="proof-title">Analytics Built in-house</div><div class="proof-text">GA4 + GTM + BigQuery + SQL + Looker Studio — fully self-built and maintained.</div></div>
+    <div class="proof-item"><div class="proof-check">✓</div><div class="proof-title">AI Chatbot Deployed</div><div class="proof-text">Python/Flask — WhatsApp, Telegram, Messenger, Webchat. No agency. No off-the-shelf.</div></div>
+  </div>
+</div>
+
+<div class="deliv-section">
+  <div class="proof-label">What he can deliver in 90 days</div>
+  <div class="deliv-grid">
+    <div class="deliv-item"><div class="deliv-icon">📊</div><div><div class="deliv-title">Tracking Audit &amp; Repair</div><div class="deliv-text">GA4, GTM, conversion attribution — identify and fix weak points.</div></div></div>
+    <div class="deliv-item"><div class="deliv-icon">🎯</div><div><div class="deliv-title">Campaign Structure Optimised</div><div class="deliv-text">Google Ads and Meta Ads aligned to conversions — not clicks.</div></div></div>
+    <div class="deliv-item"><div class="deliv-icon">📈</div><div><div class="deliv-title">Reporting Dashboard</div><div class="deliv-text">Looker Studio · BigQuery · Decision-ready data, not Excel exports.</div></div></div>
+    <div class="deliv-item"><div class="deliv-icon">🤖</div><div><div class="deliv-title">AI-Powered Processes</div><div class="deliv-text">Lead qualification, automations, chatbot integration — tailored to need.</div></div></div>
+  </div>
+</div>
+
+<div class="facts-section">
+  <div class="proof-label">At a Glance</div>
+  <div class="facts-table">
+    <div class="fact-row"><div class="fact-key">Available from</div><div class="fact-val"><span class="tag">June 2026</span> Berlin · Remote possible</div></div>
+    <div class="fact-row"><div class="fact-key">Total experience</div><div class="fact-val">6+ years online marketing · 3.5 years sole responsibility</div></div>
+    <div class="fact-row"><div class="fact-key">Main channels</div><div class="fact-val"><span class="tag">Google Ads</span><span class="tag">Meta Ads</span><span class="tag">GA4</span><span class="tag">BigQuery</span></div></div>
+    <div class="fact-row"><div class="fact-key">Tech skills</div><div class="fact-val">Python · Flask · HTML5 · CSS3 · JS · Prompt Engineering</div></div>
+    <div class="fact-row"><div class="fact-key">Languages</div><div class="fact-val"><span class="tag">DE C2</span><span class="tag">EN C1</span><span class="tag">IT C1</span><span class="tag">PT Native</span><span class="tag">ES B1</span></div></div>
+    <div class="fact-row"><div class="fact-key">Citizenship</div><div class="fact-val">EU Citizen · no work permit required</div></div>
+    <div class="fact-row"><div class="fact-key">Further training</div><div class="fact-val">Online Marketing Strategy · OMT Sep 2025 &nbsp;|&nbsp; SEO Deep Dive · OMT Jul 2025</div></div>
+    <div class="fact-row"><div class="fact-key">Education</div><div class="fact-val">UFPR Curitiba · Teaching Degree — German as a Foreign Language</div></div>
+  </div>
+</div>
+
+<div class="final-cta">
+  <h2>Ready for the conversation.</h2>
+  <p>Nothing more, nothing less. If you're looking for results, you're in the right place.</p>
+  <div class="final-btns">
+    <a href="mailto:tiagoleichs@gmail.com" class="final-btn primary">Send an email</a>
+    <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank" class="final-btn primary">Open LinkedIn</a>
+    <a href="index-en.html" class="final-btn ghost">← All formats</a>
+  </div>
+</div>
+<script>
+  const bar=document.getElementById('stickyBar');
+  const hero=document.getElementById('heroSection');
+  const obs=new IntersectionObserver(entries=>{bar.classList.toggle('visible',!entries[0].isIntersecting);},{threshold:0});
+  obs.observe(hero);
+</script>
+</body>
+</html>

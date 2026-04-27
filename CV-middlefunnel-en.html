@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring — Middle of Funnel</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0C0F14;--surface:#121620;--surface2:#1A1F2C;--border:#222838;--blue:#3A72DC;--blue2:#5A92FC;--green:#2BC48A;--text:#C8D4E8;--text2:#6A7890;--cream:#E8F0F8;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+  .back-btn{position:fixed;top:1.5rem;left:1.5rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;background:var(--surface);border:1px solid var(--border);padding:0.5rem 1rem;z-index:100;transition:all 0.2s;}
+  .back-btn:hover{color:var(--blue2);border-color:var(--blue);}
+  .mf-header{border-bottom:1px solid var(--border);padding:5rem 5rem 3rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end;}
+  .mf-eyebrow{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue2);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem;}
+  .mf-eyebrow::before{content:'';width:1.5rem;height:1px;background:var(--blue2);}
+  .mf-name{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4vw,4rem);color:var(--cream);font-weight:700;margin-bottom:0.5rem;line-height:1.1;}
+  .mf-role{color:var(--text2);font-size:0.95rem;}
+  .header-stats{display:flex;gap:1.5rem;flex-wrap:wrap;}
+  .h-stat{text-align:center;background:var(--surface);border:1px solid var(--border);padding:1rem 1.25rem;min-width:100px;}
+  .h-stat .n{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--blue2);line-height:1;font-weight:700;}
+  .h-stat .l{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-top:0.2rem;}
+  .section{padding:4rem 5rem;}
+  .section+.section{border-top:1px solid var(--border);}
+  .sec-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--blue);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+  .sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .case-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--blue);padding:2.5rem;margin-bottom:1.5rem;}
+  .case-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+  .case-title{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--cream);font-weight:700;}
+  .case-org{font-size:0.8rem;color:var(--text2);margin-top:0.25rem;}
+  .case-period{font-size:0.75rem;color:var(--text2);white-space:nowrap;background:var(--surface2);border:1px solid var(--border);padding:0.3rem 0.7rem;flex-shrink:0;align-self:flex-start;}
+  .case-body{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;}
+  .case-desc{color:var(--text);font-size:0.88rem;line-height:1.7;}
+  .case-results{flex-shrink:0;min-width:180px;}
+  .result-item{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);padding:0.6rem 1rem;margin-bottom:0.5rem;}
+  .result-item .rn{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--green);line-height:1;font-weight:700;}
+  .result-item .rl{font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--text2);margin-top:0.1rem;}
+  .skills-table{width:100%;border-collapse:collapse;}
+  .skills-table tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
+  .skills-table tr:hover{background:var(--surface);}
+  .skills-table td{padding:0.9rem 1rem;vertical-align:middle;}
+  .skills-table td:first-child{width:180px;font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--text2);}
+  .skills-table td:nth-child(2){color:var(--cream);font-size:0.88rem;}
+  .bar-cell{width:160px;}
+  .skill-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+  .skill-fill{height:100%;background:linear-gradient(to right,var(--blue),var(--blue2));border-radius:2px;transition:width 1s ease;}
+  .skill-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;background:rgba(58,114,220,0.15);color:var(--blue2);border:1px solid rgba(58,114,220,0.3);padding:0.15rem 0.5rem;margin-left:0.4rem;}
+  .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .diff-item{background:var(--surface);border:1px solid var(--border);padding:2rem;position:relative;}
+  .diff-num{position:absolute;top:1.5rem;right:1.75rem;font-family:'Fraunces',serif;font-size:4rem;color:var(--border);line-height:1;}
+  .diff-title{font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:0.5rem;}
+  .diff-text{font-size:0.83rem;color:var(--text2);line-height:1.6;}
+  .exp-table{width:100%;}
+  .exp-row{display:grid;grid-template-columns:140px 1fr auto;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:baseline;}
+  .exp-period{font-size:0.75rem;color:var(--text2);}
+  .exp-role{font-weight:600;color:var(--cream);font-size:0.92rem;}
+  .exp-company{font-size:0.8rem;color:var(--text2);margin-top:0.2rem;}
+  .exp-years{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--blue);white-space:nowrap;}
+  .lang-chips{display:flex;gap:1rem;flex-wrap:wrap;}
+  .lang-chip{background:var(--surface);border:1px solid var(--border);padding:0.75rem 1.25rem;transition:border-color 0.2s;}
+  .lang-chip:hover{border-color:var(--blue);}
+  .lang-chip .lc{font-size:1rem;font-weight:600;color:var(--cream);}
+  .lang-chip .ll{font-size:0.7rem;color:var(--blue2);margin-top:0.1rem;}
+  .mf-footer{border-top:1px solid var(--border);padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .mf-footer p{font-size:0.8rem;color:var(--text2);}
+  .cta-btn{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--blue);color:white;text-decoration:none;padding:0.9rem 2rem;transition:background 0.2s;}
+  .cta-btn:hover{background:var(--blue2);}
+  .sec-btn{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;background:transparent;color:var(--text2);text-decoration:none;border:1px solid var(--border);padding:0.9rem 2rem;transition:all 0.2s;margin-left:0.75rem;}
+  .sec-btn:hover{color:var(--text);border-color:var(--text2);}
+  @media(max-width:780px){.mf-header{padding:4rem 2rem 2rem;grid-template-columns:1fr;}.section{padding:3rem 2rem;}.case-body{grid-template-columns:1fr;}.diff-grid{grid-template-columns:1fr;}.exp-row{grid-template-columns:1fr;gap:0.25rem;}.mf-footer{padding:2rem;}}
+</style>
+</head>
+<body>
+<a href="index-en.html" class="back-btn">← Back</a>
+
+<div class="mf-header">
+  <div>
+    <div class="mf-eyebrow">Candidate Profile · Middle of Funnel</div>
+    <h1 class="mf-name">Tiago Leichsenring</h1>
+    <p class="mf-role">Senior Online Performance Marketing Manager · Berlin · Available June 2026</p>
+  </div>
+  <div class="header-stats">
+    <div class="h-stat"><div class="n">3.5+</div><div class="l">Years at Linara</div></div>
+    <div class="h-stat"><div class="n">6+</div><div class="l">Years Paid Media</div></div>
+    <div class="h-stat"><div class="n">5</div><div class="l">Languages</div></div>
+    <div class="h-stat"><div class="n">3</div><div class="l">Big Tech (G/M/TT)</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">Case Studies — Proven Results</div>
+  <div class="case-card">
+    <div class="case-head">
+      <div>
+        <div class="case-title">Growth from scratch — Linara GmbH</div>
+        <div class="case-org">Online Performance Marketing Manager · Linara GmbH, Berlin</div>
+      </div>
+      <div class="case-period">Oct. 2022 — Apr. 2026</div>
+    </div>
+    <div class="case-body">
+      <div class="case-desc">Took over all online customer acquisition for a Berlin-based care placement company. Built the full analytics stack (GA4 + GTM + BigQuery + SQL + Looker Studio), optimised all paid media channels (Google Ads, Meta Ads, Taboola, Bing), developed a marketing strategy for two brands (Linara + FairCare), and ran international Google Ads campaigns across four Eastern European markets. In parallel: independently conceived, developed and launched an AI chatbot (Python/Flask) for automatic lead qualification.</div>
+      <div class="case-results">
+        <div class="result-item"><div class="rn">+200%</div><div class="rl">Customer Acq. · Year 1</div></div>
+        <div class="result-item"><div class="rn">70→15%</div><div class="rl">Junk Lead Rate</div></div>
+        <div class="result-item"><div class="rn">−80%</div><div class="rl">Unsuitable Applicants</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-head">
+      <div>
+        <div class="case-title">AI Chatbot — from 0 to Production</div>
+        <div class="case-org">In-house build · Python / Flask</div>
+      </div>
+      <div class="case-period">2023 – 2024</div>
+    </div>
+    <div class="case-body">
+      <div class="case-desc">Problem: 70% of all incoming leads were unqualified, costing the sales team measurable time every day. Independently conceived and developed: an AI-powered chatbot for WhatsApp, Telegram, Messenger and Webchat that qualifies leads before any human contact. No agency. No off-the-shelf tool. Concept, architecture, development, launch — all internal.</div>
+      <div class="case-results">
+        <div class="result-item"><div class="rn">−80%</div><div class="rl">Unqualified Applicants</div></div>
+        <div class="result-item"><div class="rn">4</div><div class="rl">Platforms live</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">What sets him apart</div>
+  <div class="diff-grid">
+    <div class="diff-item"><div class="diff-num">01</div><div class="diff-title">Strategist + Developer</div><div class="diff-text">He doesn't create marketing plans for others to execute. He executes them himself — including Python chatbots and GDPR-compliant Maps integrations.</div></div>
+    <div class="diff-item"><div class="diff-num">02</div><div class="diff-title">All Three Platform Worlds</div><div class="diff-text">Experience from inside Google, Meta and TikTok — not as an advertiser, but as platform-side support. He knows the mechanics, not just the interface.</div></div>
+    <div class="diff-item"><div class="diff-num">03</div><div class="diff-title">Analytics Built from Zero</div><div class="diff-text">GA4, GTM, BigQuery, SQL, Looker Studio — fully self-built and maintained. No outsourcing. No black box.</div></div>
+    <div class="diff-item"><div class="diff-num">04</div><div class="diff-title">5 Languages · DE C2</div><div class="diff-text">German at near-native level, English and Italian at C1. EU citizen. Immediately deployable for DACH, international or multilingual teams.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">Skills &amp; Depth of Expertise</div>
+  <table class="skills-table">
+    <tr><td>Paid Media</td><td>Google Ads <span class="skill-tag">Expert</span> &nbsp; Meta Ads <span class="skill-tag">Expert</span> &nbsp; TikTok · Bing · LinkedIn · Taboola</td><td class="bar-cell"><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></td></tr>
+    <tr><td>Analytics</td><td>GA4 · GTM · BigQuery · SQL · Looker Studio <span class="skill-tag">Self-built</span></td><td class="bar-cell"><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></td></tr>
+    <tr><td>Strategy</td><td>Marketing Plan · STP · Channel Mix · Budget Allocation · Funnel</td><td class="bar-cell"><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></td></tr>
+    <tr><td>Development</td><td>Python · Flask · HTML5 · CSS3 · JavaScript <span class="skill-tag">Self-taught</span></td><td class="bar-cell"><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></td></tr>
+    <tr><td>AI</td><td>Prompt Engineering · AI Chatbot Development · Claude · Cursor · Ideogram</td><td class="bar-cell"><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></td></tr>
+    <tr><td>SEO</td><td>Technical SEO · Agency coordination · FairCare built independently</td><td class="bar-cell"><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="sec-label">Work Experience</div>
+  <div class="exp-table">
+    <div class="exp-row"><div class="exp-period">Oct. 2022 — Apr. 2026</div><div><div class="exp-role">Online Performance Marketing Manager</div><div class="exp-company">Linara GmbH · Berlin</div></div><div class="exp-years">3.5 yr</div></div>
+    <div class="exp-row"><div class="exp-period">May — Oct. 2022</div><div><div class="exp-role">Ad Solutions Support — TikTok Ads</div><div class="exp-company">TikTok · Berlin</div></div><div class="exp-years">6 mo</div></div>
+    <div class="exp-row"><div class="exp-period">Jun. 2021 — Jan. 2022</div><div><div class="exp-role">Sales Performance Marketing Specialist</div><div class="exp-company">Concentrix (Meta) · Berlin</div></div><div class="exp-years">8 mo</div></div>
+    <div class="exp-row"><div class="exp-period">May 2020 — Jun. 2021</div><div><div class="exp-role">Online Marketing Support Specialist</div><div class="exp-company">Majorel (Google) · Berlin, DACH</div></div><div class="exp-years">13 mo</div></div>
+    <div class="exp-row"><div class="exp-period">2011–2015 · 2018–2020</div><div><div class="exp-role">Language Teacher (DE/PT)</div><div class="exp-company">Freelance · Curitiba &amp; Berlin</div></div><div class="exp-years">—</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">Education &amp; Training</div>
+  <table class="skills-table">
+    <tr><td>Degree</td><td>Teaching Degree — German as a Foreign Language · UFPR Curitiba · 2004–2009</td><td class="bar-cell"></td></tr>
+    <tr><td>OMT 2025</td><td>Online Marketing Strategy · Reachx, Frankfurt <span class="skill-tag">Sep. 2025</span> &nbsp; SEO Deep Dive · SEOCATION <span class="skill-tag">Jul. 2025</span></td><td class="bar-cell"></td></tr>
+    <tr><td>Self-taught</td><td>JavaScript · Java (Android)</td><td class="bar-cell"></td></tr>
+    <tr><td>Volunteer</td><td>Registered Association (current) · Childcare Worker Curitiba 2012–2015 · Refugee Course 2014–2015 · WWOOF IT/IE/FR/DE</td><td class="bar-cell"></td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="sec-label">Languages</div>
+  <div class="lang-chips">
+    <div class="lang-chip"><div class="lc">PT</div><div class="ll">Native</div></div>
+    <div class="lang-chip"><div class="lc">DE</div><div class="ll">C2 · Near-native</div></div>
+    <div class="lang-chip"><div class="lc">EN</div><div class="ll">C1</div></div>
+    <div class="lang-chip"><div class="lc">IT</div><div class="ll">C1</div></div>
+    <div class="lang-chip"><div class="lc">ES</div><div class="ll">B1</div></div>
+  </div>
+</div>
+
+<div class="mf-footer">
+  <p>tiagoleichs@gmail.com · Berlin 13509 · Available from June 2026</p>
+  <div>
+    <a href="mailto:tiagoleichs@gmail.com" class="cta-btn">Request a conversation</a>
+    <a href="index-en.html" class="sec-btn">← Overview</a>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('.skill-fill').forEach(el=>{
+      const w=el.style.width;el.style.width='0';
+      setTimeout(()=>{el.style.width=w;},300);
+    });
+  });
+</script>
+</body>
+</html>

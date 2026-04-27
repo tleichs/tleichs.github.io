@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiago Leichsenring — Top of Funnel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2EDE6;
+    --ink: #0F0E0C;
+    --red: #C8330A;
+    --yellow: #F5C500;
+    --cream: #FDFAF5;
+    --mid: #E8E0D5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+  .back-btn {
+    position: fixed; top: 1.5rem; left: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    background: var(--cream);
+    border: 1.5px solid var(--ink);
+    padding: 0.5rem 1rem; z-index: 100;
+    transition: all 0.15s;
+  }
+  .back-btn:hover { background: var(--ink); color: var(--cream); }
+
+  /* ── HERO: full bleed poster ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 6rem 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -50%; right: -10%;
+    width: 70vw; height: 200%;
+    background: var(--red);
+    transform: skewX(-8deg);
+    opacity: 0.07;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--yellow);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 13vw, 14rem);
+    line-height: 0.92;
+    color: #F2EDE6;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+  .hero-headline .accent { color: var(--yellow); display: block; }
+  .hero-sub {
+    font-size: 1.1rem; color: #9A9080;
+    max-width: 500px; line-height: 1.6;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+  .hero-pill {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: var(--yellow);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker {
+    display: inline-block;
+    animation: ticker 18s linear infinite;
+  }
+  .ticker span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin-right: 4rem;
+  }
+  @keyframes ticker { to { transform: translateX(-50%); } }
+
+  /* STAT BLOCKS */
+  .stat-section {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    background: var(--ink);
+  }
+  .stat-block {
+    padding: 4rem 3rem;
+    border-right: 1px solid #2A2820;
+    transition: background 0.3s;
+  }
+  .stat-block:last-child { border-right: none; }
+  .stat-block:hover { background: #1A1814; }
+  .stat-block .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem; line-height: 1;
+    color: var(--yellow);
+    margin-bottom: 0.5rem;
+  }
+  .stat-block .label {
+    font-size: 0.85rem; color: #7A7060;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .stat-block .desc {
+    font-size: 0.8rem; color: #4A4438;
+    margin-top: 0.5rem; line-height: 1.5;
+  }
+
+  /* VALUE PROP SECTION */
+  .vp-section {
+    padding: 6rem 5rem;
+    background: var(--cream);
+  }
+  .vp-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .vp-eyebrow::after { content: ''; flex: 1; height: 1px; background: #D4C8BC; }
+  .vp-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 7rem);
+    line-height: 0.95; color: var(--ink);
+    max-width: 900px;
+    margin-bottom: 3rem;
+  }
+  .vp-headline em { font-style: normal; color: var(--red); }
+
+  .pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  }
+  .pillar {
+    padding: 2.5rem 0;
+    border-top: 3px solid var(--ink);
+  }
+  .pillar .p-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; color: #D4C8BC;
+    line-height: 1; margin-bottom: 0.5rem;
+  }
+  .pillar .p-title {
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .pillar .p-desc { font-size: 0.85rem; color: #6A6058; line-height: 1.6; }
+
+  /* CHANNELS ROW */
+  .channels {
+    background: var(--bg);
+    padding: 4rem 5rem;
+    border-top: 2px solid var(--ink);
+  }
+  .ch-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 2rem;
+  }
+  .ch-grid {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+  }
+  .ch-pill {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 0.05em;
+    border: 2px solid var(--ink);
+    padding: 0.5rem 1.5rem;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .ch-pill:hover { background: var(--ink); color: var(--cream); }
+  .ch-pill.highlight { background: var(--ink); color: var(--yellow); }
+
+  /* LANGUAGES */
+  .lang-section {
+    background: var(--red);
+    padding: 3rem 5rem;
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .lang-intro {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; color: #F2EDE6;
+    flex-shrink: 0;
+  }
+  .lang-flags { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .lang-flag {
+    text-align: center;
+    color: rgba(242,237,230,0.7);
+    font-size: 0.75rem; font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+  }
+  .lang-flag strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; color: #F2EDE6; line-height: 1;
+    margin-bottom: 0.15rem;
+  }
+
+  /* CTA FOOTER */
+  .cta-footer {
+    background: var(--ink);
+    padding: 5rem;
+    text-align: center;
+  }
+  .cta-footer h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 6rem);
+    color: var(--cream);
+    line-height: 1; margin-bottom: 1.5rem;
+  }
+  .cta-footer h2 span { color: var(--yellow); }
+  .cta-footer p {
+    color: #5A5448; font-size: 0.9rem; margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cta-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    transition: all 0.2s;
+  }
+  .cta-link.primary { background: var(--yellow); color: var(--ink); }
+  .cta-link.primary:hover { background: #E5B500; }
+  .cta-link.secondary { border: 1px solid #3A3428; color: #7A7060; }
+  .cta-link.secondary:hover { border-color: #7A7060; color: var(--cream); }
+
+  @media (max-width: 780px) {
+    .hero { padding: 5rem 2rem 3rem; }
+    .stat-section { grid-template-columns: 1fr; }
+    .stat-block { border-right: none; border-bottom: 1px solid #2A2820; }
+    .vp-section, .channels { padding: 3rem 2rem; }
+    .pillars { grid-template-columns: 1fr; }
+    .cta-footer { padding: 3rem 2rem; }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" class="back-btn">← Zurück</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Senior · Performance Marketing · Berlin · Ab Juni 2026</div>
+  <h1 class="hero-headline">
+    Performance
+    <span class="accent">Marketing.</span>
+    Ohne Ausreden.
+  </h1>
+  <p class="hero-sub">Paid Media, Analytics-Infrastruktur und KI-gestützte Optimierung — für Teams, die Ergebnisse brauchen, keine Berichte.</p>
+  <div class="hero-pill">Tiago Leichsenring</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>+200% Kundengewinnung</span>
+    <span>·</span>
+    <span>Schrott-Leads: 70% → 15%</span>
+    <span>·</span>
+    <span>KI-Chatbot: −80% unqualifizierte Bewerber</span>
+    <span>·</span>
+    <span>Google Ads · Meta Ads · BigQuery · Python</span>
+    <span>·</span>
+    <span>5 Sprachen · EU-Bürger</span>
+    <span>·</span>
+    <span>OMT 2025 · Reachx · SEOCATION</span>
+    <span>·</span>
+    <span>+200% Kundengewinnung</span>
+    <span>·</span>
+    <span>Schrott-Leads: 70% → 15%</span>
+    <span>·</span>
+    <span>KI-Chatbot: −80% unqualifizierte Bewerber</span>
+    <span>·</span>
+    <span>Google Ads · Meta Ads · BigQuery · Python</span>
+    <span>·</span>
+    <span>5 Sprachen · EU-Bürger</span>
+    <span>·</span>
+    <span>OMT 2025 · Reachx · SEOCATION</span>
+    <span>·</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stat-section">
+  <div class="stat-block">
+    <div class="num">+200%</div>
+    <div class="label">Kundengewinnung</div>
+    <div class="desc">Innerhalb des ersten vollen Jahres bei Linara GmbH.</div>
+  </div>
+  <div class="stat-block">
+    <div class="num">−55pp</div>
+    <div class="label">Weniger Junk Leads</div>
+    <div class="desc">Lead-Qualität von 30% auf 85% nützlich gesteigert.</div>
+  </div>
+  <div class="stat-block">
+    <div class="num">−80%</div>
+    <div class="label">Ungeeignete Bewerber</div>
+    <div class="desc">KI-Chatbot — selbst entwickelt, nicht zugekauft.</div>
+  </div>
+</div>
+
+<!-- VALUE PROP -->
+<div class="vp-section">
+  <div class="vp-eyebrow">Was ihn unterscheidet</div>
+  <h2 class="vp-headline">
+    Er baut.<br>
+    Er misst.<br>
+    Er <em>liefert.</em>
+  </h2>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="p-num">01</div>
+      <div class="p-title">Strategie + Ausführung</div>
+      <div class="p-desc">Kein Theoretiker. Tiago entwickelt Marketingpläne und setzt sie selbst um — von der Kampagnenstruktur bis zur Landing Page.</div>
+    </div>
+    <div class="pillar">
+      <div class="p-num">02</div>
+      <div class="p-title">Daten, die entscheiden</div>
+      <div class="p-desc">GA4, GTM, BigQuery, SQL, Looker Studio — vollständig selbst aufgebaut. Entscheidungen basieren auf Zahlen, nicht auf Gefühl.</div>
+    </div>
+    <div class="pillar">
+      <div class="p-num">03</div>
+      <div class="p-title">Tech, wenn es zählt</div>
+      <div class="p-desc">Python, Flask, HTML, KI-Chatbot. Er löst Probleme, für die andere externe Entwickler brauchen.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANNELS -->
+<div class="channels">
+  <div class="ch-label">Kanäle &amp; Tools</div>
+  <div class="ch-grid">
+    <div class="ch-pill highlight">Google Ads</div>
+    <div class="ch-pill highlight">Meta Ads</div>
+    <div class="ch-pill">TikTok Ads</div>
+    <div class="ch-pill highlight">GA4 · GTM</div>
+    <div class="ch-pill">Bing Ads</div>
+    <div class="ch-pill">LinkedIn Ads</div>
+    <div class="ch-pill">Taboola</div>
+    <div class="ch-pill highlight">BigQuery · SQL</div>
+    <div class="ch-pill">Looker Studio</div>
+    <div class="ch-pill highlight">Python · Flask</div>
+    <div class="ch-pill">Technisches SEO</div>
+    <div class="ch-pill">Prompt Engineering</div>
+  </div>
+</div>
+
+<!-- LANGUAGES -->
+<div class="lang-section">
+  <div class="lang-intro">5 Sprachen.</div>
+  <div class="lang-flags">
+    <div class="lang-flag"><strong>PT</strong>Muttersprache</div>
+    <div class="lang-flag"><strong>DE</strong>C2</div>
+    <div class="lang-flag"><strong>EN</strong>C1</div>
+    <div class="lang-flag"><strong>IT</strong>C1</div>
+    <div class="lang-flag"><strong>ES</strong>B1</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-footer">
+  <h2>Bereit.<br><span>Ab Juni 2026.</span></h2>
+  <p>Berlin-basiert · Remote möglich · Vollzeit · EU-Bürger</p>
+  <div class="cta-row">
+    <a href="mailto:tiagoleichs@gmail.com" class="cta-link primary">Kontakt aufnehmen</a>
+    <a href="index.html" class="cta-link secondary">← Alle CV-Formate</a>
+  </div>
+</div>
+
+</body>
+</html>
