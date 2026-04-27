@@ -3,391 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiago Leichsenring – Performance Marketing Manager</title>
-
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2QLWCTTMF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-X2QLWCTTMF');
-  const _sd = new Set();
-  window.addEventListener('scroll', () => {
-    const p = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
-    [25,50,75,100].forEach(m => {
-      if (p >= m && !_sd.has(m)) { _sd.add(m); gtag('event','scroll_depth',{depth_percent:m,page:'mifu'}); }
-    });
-  });
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.cta-link')?.addEventListener('click', () =>
-      gtag('event','cta_click',{label:'view_detailed_cv',page:'mifu'})
-    );
-    document.querySelectorAll('a[href*="linkedin"]').forEach(a =>
-      a.addEventListener('click', () => gtag('event','contact_click',{method:'linkedin',page:'mifu'}))
-    );
-  });
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<title>Tiago Leichsenring — CV Formats</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --base:    #1e2330;
-    --surface: #252a3a;
-    --raised:  #2c3347;
-    --border:  rgba(255,255,255,0.08);
-    --amber:   #c8893a;
-    --amber-l: #d4a04a;
-    --text:    #f0ece4;
-    --muted:   #c0b8a8;
-    --bright:  #faf8f4;
-    --mono:    'JetBrains Mono', monospace;
+    --bg: #09090A;
+    --surface: #111113;
+    --border: #1E1E22;
+    --gold: #C9974A;
+    --gold-dim: #6A5030;
+    --text: #E8E6E0;
+    --muted: #55534E;
+    --white: #F5F3EE;
   }
 
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--base);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* NAV */
-  .nav{display:flex;justify-content:space-between;align-items:center;padding:32px 80px 0;}
-  .nav-label{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
-  .nav-right{display:flex;align-items:center;gap:16px;}
-  .lang-sw{display:flex;gap:6px;}
-  .flag-btn{background:none;border:none;cursor:pointer;font-size:20px;opacity:0.35;transition:opacity .2s,transform .15s;padding:2px;}
-  .flag-btn:hover{opacity:.8;transform:scale(1.1);}
-  .flag-btn.active{opacity:1;}
-  .nav-li{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,137,58,.3);padding-bottom:1px;}
-  .nav-li:hover{border-color:var(--amber);}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
 
-  /* HERO */
-  .hero{min-height:calc(100vh - 80px);display:grid;grid-template-rows:1fr auto;padding:48px 80px 56px;position:relative;overflow:hidden;}
-  .hero::before{content:'';position:absolute;top:-120px;right:-180px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,137,58,.06) 0%,transparent 65%);pointer-events:none;}
+  /* HEADER */
+  header {
+    padding: 48px 64px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 32px;
+  }
 
-  .hero-main{display:flex;flex-direction:column;justify-content:center;}
-  .hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
-  .hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber);}
-  .hero-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(64px,9vw,118px);line-height:.92;text-transform:uppercase;color:var(--bright);margin-bottom:24px;}
-  .hero-name span{color:var(--amber);}
-  .hero-desc{font-size:20px;font-weight:300;color:var(--muted);max-width:560px;line-height:1.7;}
+  .header-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
 
-  /* CARDS */
-  .hero-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px;}
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px 26px;position:relative;overflow:hidden;}
-  .card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--amber);opacity:.6;}
-  .card-value{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:44px;line-height:1;color:var(--amber-l);display:block;margin-bottom:5px;}
-  .card-label{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.5;}
+  .header-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-  /* SECTIONS */
-  section{padding:72px 80px;border-bottom:1px solid var(--border);}
-  section.alt{background:var(--surface);}
-  .sec-label{font-family:var(--mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:40px;display:flex;align-items:center;gap:14px;}
-  .sec-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--border);}
+  /* MAIN GRID */
+  main {
+    padding: 0;
+  }
 
-  /* RESULTS */
-  .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .result-card{background:var(--raised);border:1px solid var(--border);border-radius:4px;padding:30px 26px;}
-  .result-num{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--muted);margin-bottom:12px;display:block;}
-  .result-title{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--bright);margin-bottom:10px;line-height:1.2;}
-  .result-body{font-size:15px;color:var(--muted);line-height:1.7;}
-  .result-body strong{color:var(--text);font-weight:400;}
+  .cv-list {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
-  /* SKILLS */
-  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px 60px;}
-  .skill-group h4{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
-  .skill-group.ai-featured{background:var(--raised);border:1px solid rgba(200,137,58,.2);border-radius:4px;padding:18px 20px;}
-  .skill-group.ai-featured h4{color:var(--amber-l);}
-  .skill-entry{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.03);}
-  .skill-main{font-size:15px;font-weight:400;color:var(--text);display:block;line-height:1.3;}
-  .skill-group.ai-featured .skill-main{color:var(--bright);}
-  .skill-sub{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;display:block;margin-top:2px;line-height:1.4;}
-  .skill-plain{font-size:15px;font-weight:300;color:var(--muted);display:block;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.03);}
+  .cv-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 120px;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    padding: 0 64px;
+  }
 
-  /* CAREER */
-  .exp-row{display:grid;grid-template-columns:200px 1fr auto;gap:24px;padding:18px 0;border-bottom:1px solid var(--border);align-items:center;}
-  .exp-row:first-of-type{border-top:1px solid var(--border);}
-  .exp-period{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;}
-  .exp-role{font-size:15px;font-weight:400;color:var(--text);}
-  .exp-role span{display:block;font-size:12px;font-weight:300;color:var(--muted);margin-top:2px;}
-  .exp-tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);border-radius:2px;color:var(--muted);white-space:nowrap;}
-  .exp-tag.end{border-color:rgba(200,137,58,.3);color:var(--amber);}
+  .cv-row:hover {
+    background: #0E0E10;
+  }
 
-  /* LANGUAGES */
-  .lang-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
-  .lang-name{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:18px;text-transform:uppercase;color:var(--bright);letter-spacing:.04em;display:block;margin-bottom:2px;}
-  .lang-level{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;}
-  .lang-track{height:2px;background:var(--border);border-radius:1px;position:relative;}
-  .lang-track::after{content:'';position:absolute;left:0;top:0;height:100%;background:var(--amber);border-radius:1px;}
-  .lang-track.p100::after{width:100%}.lang-track.p95::after{width:95%}.lang-track.p80::after{width:80%}.lang-track.p78::after{width:78%}.lang-track.p55::after{width:55%}
+  .cv-row:hover .cv-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-  /* CLOSER */
-  .closer{padding:72px 80px;background:var(--surface);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;border-bottom:1px solid var(--border);}
-  .closer-tagline{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(48px,6vw,78px);line-height:.92;text-transform:uppercase;color:var(--bright);}
-  .closer-tagline em{font-style:normal;color:var(--amber);}
-  .closer-note{font-size:15px;color:var(--muted);line-height:1.85;}
-  .closer-note strong{color:var(--text);font-weight:400;}
+  .cv-row:hover .cv-title {
+    color: var(--white);
+  }
 
-  /* FOOTER / CTA */
-  .footer{padding:56px 80px;background:var(--surface);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
-  .footer-left{display:flex;flex-direction:column;gap:10px;}
-  .footer-heading{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;text-transform:uppercase;letter-spacing:.04em;color:var(--bright);line-height:1;}
-  .footer-note{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px;}
-  .footer-li{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,137,58,.25);padding-bottom:1px;width:fit-content;transition:border-color .2s;}
-  .footer-li:hover{border-color:var(--amber);}
-  .cta-link{display:inline-flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;background:var(--amber);border-radius:3px;padding:20px 36px;transition:background .2s;white-space:nowrap;}
-  .cta-link:hover{background:var(--amber-l);}
-  .cta-link-label{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--base);opacity:.7;}
-  .cta-link-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--base);display:flex;align-items:center;gap:8px;}
-  .cta-link-text::after{content:'→';font-size:18px;}
+  .cv-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+    padding: 36px 0;
+    user-select: none;
+  }
 
-  @media(max-width:960px){
-    .nav,.hero,section,.closer,.footer{padding-left:32px;padding-right:32px;}
-    .hero-cards,.results-grid{grid-template-columns:1fr 1fr;}
-    .skills-grid{grid-template-columns:1fr;gap:28px;}
-    .lang-grid{grid-template-columns:repeat(3,1fr);}
-    .exp-row{grid-template-columns:1fr;gap:6px;}
-    .closer,.footer{grid-template-columns:1fr;gap:40px;}
+  .cv-body {
+    padding: 36px 48px 36px 32px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .cv-funnel-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .cv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #C8C5BC;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+    letter-spacing: -0.01em;
+  }
+
+  .cv-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .cv-arrow {
+    font-size: 22px;
+    color: var(--gold);
+    text-align: right;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.15s, transform 0.2s;
+  }
+
+  /* Funnel rows get a subtle left accent on hover */
+  .cv-row[data-type="tofu"]:hover { border-left: 3px solid #E8C547; }
+  .cv-row[data-type="mifu"]:hover { border-left: 3px solid #4A8CE8; }
+  .cv-row[data-type="bofu"]:hover { border-left: 3px solid #4AE87A; }
+  .cv-row[data-type="classic"]:hover { border-left: 3px solid var(--gold); }
+  .cv-row[data-type="story"]:hover { border-left: 3px solid #C87A4A; }
+  .cv-row[data-type="rpg"]:hover { border-left: 3px solid #9B59B6; }
+  .cv-row[data-type="deck"]:hover { border-left: 3px solid #5865F2; }
+
+  /* FOOTER */
+  footer {
+    padding: 28px 64px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-contact {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    gap: 32px;
+  }
+
+  .footer-contact a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-contact a:hover { color: var(--gold); }
+
+  .footer-avail {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .avail-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4AE87A;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (max-width: 700px) {
+    header, footer { padding: 32px 24px; }
+    .cv-row { padding: 0 24px; grid-template-columns: 40px 1fr 48px; }
+    .cv-body { padding: 28px 20px 28px 16px; }
+    .cv-title { font-size: 20px; }
+    .cv-arrow { opacity: 1; transform: none; }
   }
 </style>
-
-<script>
-const i18n = {
-  de: {
-    navLabel:'Performance Marketing · Berlin · 2026',
-    eyebrow:'Online Performance Marketing Manager',
-    desc:'5+ Jahre Erfahrung in Kundengewinnung und Marktexpansion — bezahlte Kanäle, Analytics-Infrastruktur und technische Entwicklung — in regulierten und wachstumsstarken Märkten.',
-    c1l:'Kundenwachstum · Linara · erstes Jahr',
-    c2l:'EU-Märkte · Google Ads neu aufgestellt',
-    c3l:'Jahre bei Linara GmbH Berlin · bis Apr. 2026',
-    c4l:'KI-Chatbot gebaut · 4 Kanäle',
-    secR:'Ausgewählte Ergebnisse',
-    r1t:'200% Kundenwachstum · Linara',
-    r1b:'Google Ads von null aufgebaut — Strategie, Struktur, Gebote, Landing Pages. <strong>200% Kundenwachstum im ersten Jahr.</strong>',
-    r2t:'Faircare · Google Ads reaktiviert',
-    r2b:'Google Ads für PL, RO, HU und BG neu aufgestellt — von reinen Soft-Conversions zu Ergebnissen <strong>vergleichbar mit Meta Ads.</strong>',
-    r3t:'Marketingstrategie · beide Marken',
-    r3b:'Vollständiger Marketingplan für Linara und Faircare — <strong>Channel-Mix, Budgetallokation, Marktpositionierung,</strong> Zielgruppensegmentierung, internationaler Expansionsplan.',
-    r4t:'KI-Chatbot · eigenständig entwickelt',
-    r4b:'Lücke im Beratungsfunnel identifiziert. <strong>Python/Flask Chatbot</strong> über WhatsApp, Telegram, Messenger und Webchat — mit Entscheidungsbaum-Logik. Außerhalb der Stellenbeschreibung.',
-    secS:'Tech Stack',
-    h4p:'Bezahlte Werbung',s1a:'Suche · Display · Performance Max · Shopping',s2a:'Facebook · Instagram · Katalog',s3a:'B2B · Recruitment-Kampagnen',
-    h4ai:'KI & Entwicklung',ai1:'KI-Chatbot-Entwicklung',ai1s:'WhatsApp · Telegram · Messenger · Webchat · Entscheidungsbäume',ai2:'Prompt Engineering & LLM-Integration',ai2s:'Claude · GPT · Anthropic API · Workflow-Automatisierung',ai3:'Python / Flask',ai3s:'Backend · API-Integrationen · Automatisierungsskripte',
-    h4a:'Analytics & Daten',an1s:'Attributionsmodellierung · Client-ID-Matching · Reporting',an2s:'Event-Tracking · E-Commerce · Custom Dimensions',
-    h4st:'Strategie',st1:'Marketingstrategie & -planung',st1s:'4Ps / 7Ps · STP-Framework',st2:'Zielgruppen-Targeting & Segmentierung',st2s:'International · Mehrsprachig · Multi-Markt',st3:'Funnel-Architektur',st4:'Technisches SEO',st5:'Internationale Marktexpansion',
-    secC:'Werdegang',
-    j1r:'Online Performance Marketing Manager',j1c:'Linara GmbH · Berlin · Teilzeit Hybrid',j1t:'Bis Apr. 2026',
-    j2r:'IT-Support — TikTok Ads Plattform',j2c:'TikTok · Berlin',
-    j3r:'Sales Performance Marketing Specialist',j3c:'Concentrix für Meta Ads · Berlin',
-    j4r:'Online Marketer — Google Ads & Analytics',j4c:'Majorel für Google · Berlin · DACH',
-    j5r:'Deutschlehrer',j5c:'Freiberuflich · Berlin',
-    secL:'Sprachen',lv1:'Muttersprache',lv3:'C1 · EU-Bürger',lv5:'Konversationssicher',
-    tl1:'Strategie.',tl2:'Code.',tl3:'Ergebnisse.',
-    cn:'Die Kombination ist seltener als sie klingt. Internationale Akquisitionskampagnen über sieben Märkte, die Marketingstrategie ausarbeiten, den Analytics-Stack aufbauen und einen KI-Chatbot entwickeln — das waren die letzten drei Jahre bei Linara.',
-    cedu:'Lehramt Deutsch als Fremdsprache · Universidade Federal do Paraná · Brasilien.',
-    cavail:'In Berlin seit 2017. Ab sofort verfügbar.',
-    fh:'Interesse geweckt?',
-    fn:'Der ausführliche Lebenslauf umfasst jeden Berufseinstieg, das vollständige Analytics-Setup, die Chatbot-Architektur und die Strategiearbeit.',
-    cl:'Vollständiger Lebenslauf',ct:'Jetzt ansehen',
-    j1p:'Okt. 2022 — Apr. 2026',j2p:'Mai 2022 — Okt. 2022',j3p:'Jun. 2021 — Jan. 2022',j4p:'Mai 2020 — Jun. 2021',j5p:'Jun. 2018 — Jan. 2020',
-  },
-  en: {
-    navLabel:'Performance Marketing · Berlin · 2026',
-    eyebrow:'Online Performance Marketing Manager',
-    desc:'5+ years driving customer acquisition and market expansion — paid channels, analytics infrastructure, and technical development — in regulated and high-growth markets.',
-    c1l:'Customer growth · Linara · year one',
-    c2l:'EU markets · Google Ads rebuilt',
-    c3l:'Years at Linara GmbH Berlin · until Apr 2026',
-    c4l:'AI chatbot built · 4 channels',
-    secR:'Selected results',
-    r1t:'200% customer growth · Linara',
-    r1b:'Built Google Ads from scratch — strategy, structure, bidding, landing pages. <strong>200% customer growth in year one.</strong>',
-    r2t:'Faircare · Google Ads reactivated',
-    r2b:'Rebuilt Google Ads for PL, RO, HU and BG — from soft-conversion only to results <strong>comparable with Meta Ads.</strong>',
-    r3t:'Marketing strategy · both brands',
-    r3b:'Full marketing plan for Linara and Faircare — <strong>channel mix, budget allocation, market positioning,</strong> audience segmentation, international expansion roadmap.',
-    r4t:'AI chatbot · built independently',
-    r4b:'Gap in the consultation funnel identified. <strong>Python/Flask chatbot</strong> across WhatsApp, Telegram, Messenger and webchat — with decision tree logic. Outside the original job description.',
-    secS:'Tech stack',
-    h4p:'Paid Acquisition',s1a:'Search · Display · Performance Max · Shopping',s2a:'Facebook · Instagram · Catalogue',s3a:'B2B · Recruitment campaigns',
-    h4ai:'AI & Development',ai1:'AI Chatbot Development',ai1s:'WhatsApp · Telegram · Messenger · Webchat · Decision trees',ai2:'Prompt Engineering & LLM Integration',ai2s:'Claude · GPT · Anthropic API · Workflow automation',ai3:'Python / Flask',ai3s:'Backend · API integrations · Automation scripts',
-    h4a:'Analytics & Data',an1s:'Attribution modelling · Client ID matching · Reporting',an2s:'Event tracking · E-commerce · Custom dimensions',
-    h4st:'Strategy',st1:'Marketing Strategy & Planning',st1s:'4Ps / 7Ps · STP Framework',st2:'Audience Targeting & Segmentation',st2s:'International · Multilingual · Multi-market',st3:'Funnel Architecture',st4:'Technical SEO',st5:'International Market Expansion',
-    secC:'Career',
-    j1r:'Online Performance Marketing Manager',j1c:'Linara GmbH · Berlin · Part-time Hybrid',j1t:'Until Apr 2026',
-    j2r:'IT Support — TikTok Ads Platform',j2c:'TikTok · Berlin',
-    j3r:'Sales Performance Marketing Specialist',j3c:'Concentrix for Meta Ads · Berlin',
-    j4r:'Online Marketer — Google Ads & Analytics',j4c:'Majorel for Google · Berlin · DACH',
-    j5r:'German Language Teacher',j5c:'Freelance · Berlin',
-    secL:'Languages',lv1:'Native',lv3:'C1 · EU Citizen',lv5:'Conversational',
-    tl1:'Strategy.',tl2:'Code.',tl3:'Results.',
-    cn:'The combination is less common than it sounds. Running international acquisition campaigns across seven markets, writing the marketing strategy, building the analytics stack, and developing an AI chatbot — that is what the last three years at Linara looked like.',
-    cedu:'Lehramt Deutsch als Fremdsprache · Universidade Federal do Paraná · Brazil.',
-    cavail:'Berlin-based since 2017. Available immediately.',
-    fh:'Want the full picture?',
-    fn:'The detailed CV covers every role, the full analytics setup, the chatbot architecture, and the strategy work.',
-    cl:'Full professional CV',ct:'View detailed CV',
-    j1p:'Oct 2022 — Apr 2026',j2p:'May 2022 — Oct 2022',j3p:'Jun 2021 — Jan 2022',j4p:'May 2020 — Jun 2021',j5p:'Jun 2018 — Jan 2020',
-  }
-};
-
-function applyLang(code){
-  const t=i18n[code];
-  document.documentElement.lang=code;
-  const s=id=>document.getElementById(id);
-  const set=(id,val)=>{if(s(id))s(id).textContent=val;};
-  const setH=(id,val)=>{if(s(id))s(id).innerHTML=val;};
-
-  set('nav-label',t.navLabel);set('eyebrow',t.eyebrow);set('desc',t.desc);
-  set('c1l',t.c1l);set('c2l',t.c2l);set('c3l',t.c3l);set('c4l',t.c4l);
-  set('secR',t.secR);set('r1t',t.r1t);setH('r1b',t.r1b);set('r2t',t.r2t);setH('r2b',t.r2b);
-  set('r3t',t.r3t);setH('r3b',t.r3b);set('r4t',t.r4t);setH('r4b',t.r4b);
-  set('secS',t.secS);
-  set('h4p',t.h4p);set('s1a',t.s1a);set('s2a',t.s2a);set('s3a',t.s3a);
-  set('h4ai',t.h4ai);set('ai1',t.ai1);set('ai1s',t.ai1s);set('ai2',t.ai2);set('ai2s',t.ai2s);set('ai3',t.ai3);set('ai3s',t.ai3s);
-  set('h4a',t.h4a);set('an1s',t.an1s);set('an2s',t.an2s);
-  set('h4st',t.h4st);set('st1',t.st1);set('st1s',t.st1s);set('st2',t.st2);set('st2s',t.st2s);set('st3',t.st3);set('st4',t.st4);set('st5',t.st5);
-  set('secC',t.secC);
-  set('j1r',t.j1r);set('j1c',t.j1c);set('j1t',t.j1t);set('j1p',t.j1p);
-  set('j2r',t.j2r);set('j2c',t.j2c);set('j2p',t.j2p);
-  set('j3r',t.j3r);set('j3c',t.j3c);set('j3p',t.j3p);
-  set('j4r',t.j4r);set('j4c',t.j4c);set('j4p',t.j4p);
-  set('j5r',t.j5r);set('j5c',t.j5c);set('j5p',t.j5p);
-  set('secL',t.secL);set('lv1',t.lv1);set('lv3',t.lv3);set('lv5',t.lv5);
-  set('tl1',t.tl1);set('tl2',t.tl2);set('tl3',t.tl3);
-  set('cn',t.cn);set('cedu',t.cedu);set('cavail',t.cavail);
-  set('fh',t.fh);set('fn',t.fn);set('cl',t.cl);set('ct',t.ct);
-
-  document.querySelectorAll('.flag-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('flag-'+code).classList.add('active');
-  localStorage.setItem('preferred_lang',code);
-  if(typeof gtag!=='undefined') gtag('event','language_switch',{language:code});
-}
-function switchLang(code){applyLang(code);}
-document.addEventListener('DOMContentLoaded',()=>{
-  const saved=localStorage.getItem('preferred_lang');
-  const browser=navigator.language||'de';
-  applyLang(saved||(browser.startsWith('de')?'de':'en'));
-});
-</script>
 </head>
 <body>
 
-<nav class="nav">
-  <span class="nav-label" id="nav-label">Performance Marketing · Berlin · 2026</span>
-  <div class="nav-right">
-    <div class="lang-sw">
-      <button class="flag-btn active" id="flag-de" onclick="switchLang('de')" title="Deutsch">🇩🇪</button>
-      <button class="flag-btn" id="flag-en" onclick="switchLang('en')" title="English">🇬🇧</button>
-    </div>
-    <a href="https://www.linkedin.com/in/tiago-leichsenring-34134536/" class="nav-li" target="_blank" rel="noopener">LinkedIn</a>
+<header>
+  <div class="header-name">Tiago Leichsenring</div>
+  <div style="display:flex;align-items:center;gap:24px;">
+    <div class="header-label">Select a CV format</div>
+    <a href="index-en.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;border:1px solid var(--border);padding:6px 12px;transition:color 0.15s,border-color 0.15s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='var(--gold-dim)';" onmouseout="this.style.color='var(--gold-dim)';this.style.borderColor='var(--border)';">EN</a>
   </div>
-</nav>
+</header>
 
-<div class="hero">
-  <div class="hero-main">
-    <div class="hero-eyebrow" id="eyebrow">Online Performance Marketing Manager</div>
-    <h1 class="hero-name">Tiago<br><span>Leichsenring</span></h1>
-    <p class="hero-desc" id="desc">5+ Jahre Erfahrung in Kundengewinnung und Marktexpansion — bezahlte Kanäle, Analytics-Infrastruktur und technische Entwicklung.</p>
-  </div>
-  <div class="hero-cards">
-    <div class="card"><span class="card-value">200%</span><span class="card-label" id="c1l">Kundenwachstum · Linara · erstes Jahr</span></div>
-    <div class="card"><span class="card-value">7</span><span class="card-label" id="c2l">EU-Märkte · Google Ads neu aufgestellt</span></div>
-    <div class="card"><span class="card-value">3 J.</span><span class="card-label" id="c3l">Jahre bei Linara GmbH Berlin · bis Apr. 2026</span></div>
-    <div class="card"><span class="card-value">4 K.</span><span class="card-label" id="c4l">KI-Chatbot gebaut · 4 Kanäle</span></div>
-  </div>
-</div>
+<main>
+  <div class="cv-list">
 
-<!-- RESULTS -->
-<section>
-  <div class="sec-label" id="secR">Ausgewählte Ergebnisse</div>
-  <div class="results-grid">
-    <div class="result-card"><span class="result-num">01</span><div class="result-title" id="r1t">200% Kundenwachstum · Linara</div><p class="result-body" id="r1b">Google Ads von null aufgebaut — Strategie, Struktur, Gebote, Landing Pages. <strong>200% Kundenwachstum im ersten Jahr.</strong></p></div>
-    <div class="result-card"><span class="result-num">02</span><div class="result-title" id="r2t">Faircare · Google Ads reaktiviert</div><p class="result-body" id="r2b">Google Ads für PL, RO, HU und BG neu aufgestellt — von reinen Soft-Conversions zu Ergebnissen <strong>vergleichbar mit Meta Ads.</strong></p></div>
-    <div class="result-card"><span class="result-num">03</span><div class="result-title" id="r3t">Marketingstrategie · beide Marken</div><p class="result-body" id="r3b">Vollständiger Marketingplan für Linara und Faircare — <strong>Channel-Mix, Budgetallokation, Marktpositionierung,</strong> Zielgruppensegmentierung, internationaler Expansionsplan.</p></div>
-    <div class="result-card"><span class="result-num">04</span><div class="result-title" id="r4t">KI-Chatbot · eigenständig entwickelt</div><p class="result-body" id="r4b">Lücke im Beratungsfunnel identifiziert. <strong>Python/Flask Chatbot</strong> über WhatsApp, Telegram, Messenger und Webchat — mit Entscheidungsbaum-Logik. Außerhalb der Stellenbeschreibung.</p></div>
-  </div>
-</section>
+    <a href="CV-topfunnel.html" class="cv-row" data-type="tofu">
+      <div class="cv-num">01</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Top of Funnel · Awareness</div>
+        <div class="cv-title">Poster Format</div>
+        <div class="cv-desc">Maximale Aufmerksamkeit, minimale Reibung. Große Zahlen, klares Statement — für den ersten Eindruck.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
 
-<!-- SKILLS -->
-<section class="alt">
-  <div class="sec-label" id="secS">Tech Stack</div>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <h4 id="h4p">Bezahlte Werbung</h4>
-      <div class="skill-entry"><span class="skill-main">Google Ads</span><span class="skill-sub" id="s1a">Suche · Display · Performance Max · Shopping</span></div>
-      <div class="skill-entry"><span class="skill-main">Meta Ads</span><span class="skill-sub" id="s2a">Facebook · Instagram · Katalog</span></div>
-      <div class="skill-entry"><span class="skill-main">LinkedIn Ads</span><span class="skill-sub" id="s3a">B2B · Recruitment-Kampagnen</span></div>
-      <span class="skill-plain">Bing Ads &nbsp;·&nbsp; Taboola Ads</span>
-    </div>
-    <div class="skill-group ai-featured">
-      <h4 id="h4ai">KI &amp; Entwicklung</h4>
-      <div class="skill-entry"><span class="skill-main" id="ai1">KI-Chatbot-Entwicklung</span><span class="skill-sub" id="ai1s">WhatsApp · Telegram · Messenger · Webchat · Entscheidungsbäume</span></div>
-      <div class="skill-entry"><span class="skill-main" id="ai2">Prompt Engineering &amp; LLM-Integration</span><span class="skill-sub" id="ai2s">Claude · GPT · Anthropic API · Workflow-Automatisierung</span></div>
-      <div class="skill-entry"><span class="skill-main" id="ai3">Python / Flask</span><span class="skill-sub" id="ai3s">Backend · API-Integrationen · Automatisierungsskripte</span></div>
-      <span class="skill-plain">JavaScript · Java (Android) · HTML5 / CSS3</span>
-    </div>
-    <div class="skill-group">
-      <h4 id="h4a">Analytics &amp; Daten</h4>
-      <div class="skill-entry"><span class="skill-main">BigQuery / SQL</span><span class="skill-sub" id="an1s">Attributionsmodellierung · Client-ID-Matching · Reporting</span></div>
-      <div class="skill-entry"><span class="skill-main">Google Analytics 4</span><span class="skill-sub" id="an2s">Event-Tracking · E-Commerce · Custom Dimensions</span></div>
-      <span class="skill-plain">Google Tag Manager &nbsp;·&nbsp; Conversion-Tracking</span>
-    </div>
-    <div class="skill-group">
-      <h4 id="h4st">Strategie</h4>
-      <div class="skill-entry"><span class="skill-main" id="st1">Marketingstrategie &amp; -planung</span><span class="skill-sub" id="st1s">4Ps / 7Ps · STP-Framework</span></div>
-      <div class="skill-entry"><span class="skill-main" id="st2">Zielgruppen-Targeting &amp; Segmentierung</span><span class="skill-sub" id="st2s">International · Mehrsprachig · Multi-Markt</span></div>
-      <span class="skill-plain" id="st3">Funnel-Architektur</span>
-      <span class="skill-plain" id="st4">Technisches SEO</span>
-      <span class="skill-plain" id="st5">Internationale Marktexpansion</span>
-    </div>
-  </div>
-</section>
+    <a href="CV-middlefunnel.html" class="cv-row" data-type="mifu">
+      <div class="cv-num">02</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Middle of Funnel · Consideration</div>
+        <div class="cv-title">Case Study Format</div>
+        <div class="cv-desc">Beweise, Zahlen, Differenzierung. Case Studies mit Methodik und Ergebnissen — für HR-Manager die vergleichen.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
 
-<!-- CAREER -->
-<section>
-  <div class="sec-label" id="secC">Werdegang</div>
-  <div class="exp-row"><div class="exp-period" id="j1p">Okt. 2022 — Apr. 2026</div><div class="exp-role" id="j1r">Online Performance Marketing Manager<span id="j1c">Linara GmbH · Berlin · Teilzeit Hybrid</span></div><div class="exp-tag end" id="j1t">Bis Apr. 2026</div></div>
-  <div class="exp-row"><div class="exp-period" id="j2p">Mai 2022 — Okt. 2022</div><div class="exp-role" id="j2r">IT-Support — TikTok Ads Plattform<span id="j2c">TikTok · Berlin</span></div><div class="exp-tag">Ads</div></div>
-  <div class="exp-row"><div class="exp-period" id="j3p">Jun. 2021 — Jan. 2022</div><div class="exp-role" id="j3r">Sales Performance Marketing Specialist<span id="j3c">Concentrix für Meta Ads · Berlin</span></div><div class="exp-tag">Meta</div></div>
-  <div class="exp-row"><div class="exp-period" id="j4p">Mai 2020 — Jun. 2021</div><div class="exp-role" id="j4r">Online Marketer — Google Ads &amp; Analytics<span id="j4c">Majorel für Google · Berlin · DACH</span></div><div class="exp-tag">Google</div></div>
-  <div class="exp-row"><div class="exp-period" id="j5p">Jun. 2018 — Jan. 2020</div><div class="exp-role" id="j5r">Deutschlehrer<span id="j5c">Freiberuflich · Berlin</span></div><div class="exp-tag">Sprache</div></div>
-</section>
+    <a href="CV-bottonfunnel.html" class="cv-row" data-type="bofu">
+      <div class="cv-num">03</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Bottom of Funnel · Decision</div>
+        <div class="cv-title">Ready to Hire Format</div>
+        <div class="cv-desc">Verfügbarkeit, Vertrauen, klarer CTA. Alle Fragen beantwortet bevor sie gestellt werden.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
 
-<!-- LANGUAGES -->
-<section class="alt">
-  <div class="sec-label" id="secL">Sprachen</div>
-  <div class="lang-grid">
-    <div><span class="lang-name">Portugiesisch</span><span class="lang-level" id="lv1">Muttersprache</span><div class="lang-track p100"></div></div>
-    <div><span class="lang-name">Deutsch</span><span class="lang-level">C2</span><div class="lang-track p95"></div></div>
-    <div><span class="lang-name">Englisch</span><span class="lang-level">C1</span><div class="lang-track p80"></div></div>
-    <div><span class="lang-name">Italienisch</span><span class="lang-level" id="lv3">C1 · EU-Bürger</span><div class="lang-track p78"></div></div>
-    <div><span class="lang-name">Spanisch</span><span class="lang-level" id="lv5">Konversationssicher</span><div class="lang-track p55"></div></div>
-  </div>
-</section>
+    <a href="CV-classic.html" class="cv-row" data-type="classic">
+      <div class="cv-num">04</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Standard · Print-ready</div>
+        <div class="cv-title">Classic Format</div>
+        <div class="cv-desc">Klassisch, druckbar, zeitlos. Für ATS-Systeme und formelle Bewerbungsverfahren.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
 
-<!-- CLOSER -->
-<div class="closer">
-  <div class="closer-tagline"><span id="tl1">Strategie.</span><br><span id="tl2">Code.</span><br><em id="tl3">Ergebnisse.</em></div>
-  <div class="closer-note">
-    <span id="cn">Die Kombination ist seltener als sie klingt. Internationale Akquisitionskampagnen über sieben Märkte, die Marketingstrategie ausarbeiten, den Analytics-Stack aufbauen und einen KI-Chatbot entwickeln — das waren die letzten drei Jahre bei Linara.</span><br><br>
-    <strong><span id="cedu">Lehramt Deutsch als Fremdsprache · Universidade Federal do Paraná · Brasilien.</span></strong><br>
-    <span id="cavail">In Berlin seit 2017. Ab sofort verfügbar.</span>
-  </div>
-</div>
+    <a href="CV-Story-telling.html" class="cv-row" data-type="story">
+      <div class="cv-num">05</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Narrative · Editorial</div>
+        <div class="cv-title">Storytelling Format</div>
+        <div class="cv-desc">Der Karriereweg als Geschichte. Kapitel, Wendepunkte, Epilog — für kreative Unternehmen und Entscheider die lesen.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
 
-<!-- FOOTER -->
-<div class="footer">
-  <div class="footer-left">
-    <div class="footer-heading" id="fh">Interesse geweckt?</div>
-    <p class="footer-note" id="fn">Der ausführliche Lebenslauf umfasst jeden Berufseinstieg, das vollständige Analytics-Setup, die Chatbot-Architektur und die Strategiearbeit.</p>
-    <a href="https://www.linkedin.com/in/tiago-leichsenring-34134536/" class="footer-li" target="_blank" rel="noopener">linkedin.com/in/tiago-leichsenring</a>
+    <a href="CV-RPG.html" class="cv-row" data-type="rpg">
+      <div class="cv-num">06</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Creative · Gamified</div>
+        <div class="cv-title">RPG Character Sheet</div>
+        <div class="cv-desc">Skills als Attribute, Stellen als Quests, Erfolge als Trophäen. Für Teams mit Humor und Persönlichkeit.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+
+    <a href="CV-powerpoint.html" class="cv-row" data-type="deck">
+      <div class="cv-num">07</div>
+      <div class="cv-body">
+        <div class="cv-funnel-tag">Presentation · Slide Deck</div>
+        <div class="cv-title">Interview Deck Format</div>
+        <div class="cv-desc">8 Slides, Tastaturnavigation. Für Vorstellungsgespräche wo man sich selbst präsentiert.</div>
+      </div>
+      <div class="cv-arrow">→</div>
+    </a>
+
   </div>
-  <a href="cv2.html" class="cta-link">
-    <span class="cta-link-label" id="cl">Vollständiger Lebenslauf</span>
-    <span class="cta-link-text" id="ct">Jetzt ansehen</span>
-  </a>
-</div>
+</main>
+
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:tiagoleichs@gmail.com">tiagoleichs@gmail.com</a>
+    <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank">LinkedIn</a>
+    <span>Berlin 13509</span>
+  </div>
+  <div class="footer-avail">
+    <div class="avail-dot"></div>
+    Ab Juni 2026 verfügbar
+  </div>
+</footer>
 
 </body>
 </html>
