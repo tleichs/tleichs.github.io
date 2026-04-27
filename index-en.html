@@ -3,236 +3,524 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiago Leichsenring — CV Formats</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Tiago Leichsenring - CV Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #09090A;
-    --surface: #111113;
-    --border: #1E1E22;
-    --gold: #C9974A;
-    --gold-dim: #6A5030;
-    --text: #E8E6E0;
-    --muted: #55534E;
-    --white: #F5F3EE;
+    --bg: #F8F5EF;
+    --surface: #FFFDF8;
+    --surface-soft: #EFE8DD;
+    --green: #2F6B4F;
+    --green-soft: #DCE9DF;
+    --wine: #7A263A;
+    --wine-soft: #F2DDE3;
+    --text: #26231F;
+    --muted: #554B43;
+    --border: #DED3C4;
+    --shadow: 0 20px 60px rgba(59, 44, 31, 0.12);
   }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    background: var(--bg);
+    background:
+      radial-gradient(circle at top left, rgba(47, 107, 79, 0.12), transparent 34rem),
+      radial-gradient(circle at top right, rgba(122, 38, 58, 0.12), transparent 30rem),
+      var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    line-height: 1.5;
   }
+
+  a { color: inherit; }
+
+  header,
+  main,
+  footer {
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
   header {
-    padding: 48px 64px 40px;
-    border-bottom: 1px solid var(--border);
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    gap: 32px;
+    gap: 24px;
+    padding: 36px 0 28px;
   }
+
   .header-name {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
-  .header-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .lang-switch {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 6px 12px;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  .lang-switch:hover { color: var(--gold); border-color: var(--gold-dim); }
-  main { padding: 0; }
-  .cv-list { display: grid; grid-template-columns: 1fr; }
-  .cv-row {
-    display: grid;
-    grid-template-columns: 64px 1fr 120px;
-    align-items: center;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s;
-    padding: 0 64px;
-  }
-  .cv-row:hover { background: #0E0E10; }
-  .cv-row:hover .cv-arrow { opacity: 1; transform: translateX(0); }
-  .cv-row:hover .cv-title { color: var(--white); }
-  .cv-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--gold-dim);
-    padding: 36px 0;
-    user-select: none;
-  }
-  .cv-body {
-    padding: 36px 48px 36px 32px;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-  }
-  .cv-funnel-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .cv-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: #C8C5BC;
-    line-height: 1.15;
-    margin-bottom: 8px;
-    transition: color 0.15s;
-    letter-spacing: -0.01em;
-  }
-  .cv-desc { font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 560px; }
-  .cv-arrow {
-    font-size: 22px;
-    color: var(--gold);
-    text-align: right;
-    opacity: 0;
-    transform: translateX(-6px);
-    transition: opacity 0.15s, transform 0.2s;
-  }
-  footer {
-    padding: 28px 64px;
-    border-top: 1px solid var(--border);
+
+  .header-actions {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 16px;
   }
-  .footer-contact {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    display: flex;
-    gap: 32px;
-  }
-  .footer-contact a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
-  .footer-contact a:hover { color: var(--gold); }
+
+  .header-label,
+  .lang-switch,
+  .eyebrow,
+  .cv-meta,
+  .section-kicker,
+  .footer-contact,
   .footer-avail {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .header-label,
+  .section-kicker,
+  .footer-contact,
+  .footer-avail {
     color: var(--muted);
+  }
+
+  .lang-switch {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--wine);
+    padding: 8px 13px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .lang-switch:hover {
+    background: var(--wine-soft);
+    border-color: var(--wine);
+  }
+
+  .hero {
+    background: rgba(255, 253, 248, 0.86);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+    gap: 48px;
+    padding: 56px;
+  }
+
+  .eyebrow {
+    color: var(--green);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 6vw, 78px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    max-width: 760px;
+  }
+
+  .hero-copy {
+    color: var(--muted);
+    font-size: 18px;
+    margin-top: 24px;
+    max-width: 680px;
+  }
+
+  .hero-copy strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .quick-card {
+    align-self: stretch;
+    background: var(--green);
+    border-radius: 26px;
+    color: #FFFDF8;
+    display: grid;
+    gap: 22px;
+    padding: 32px;
+  }
+
+  .quick-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .quick-card p {
+    color: rgba(255, 253, 248, 0.78);
+    font-size: 14px;
+  }
+
+  .quick-list {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+  }
+
+  .quick-list li {
+    background: rgba(255, 253, 248, 0.12);
+    border-radius: 16px;
+    padding: 12px 14px;
+  }
+
+  .downloads {
+    padding: 56px 0;
+  }
+
+  .section-head {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+
+  .section-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1;
+  }
+
+  .cv-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cv-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    display: grid;
+    gap: 18px;
+    padding: 24px;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .cv-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 16px 34px rgba(47, 107, 79, 0.14);
+    transform: translateY(-3px);
+  }
+
+  .cv-topline {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .cv-meta {
+    color: var(--green);
+  }
+
+  .cv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 29px;
+    line-height: 1.05;
+  }
+
+  .cv-desc {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .download-button {
+    align-items: center;
+    background: var(--green);
+    border-radius: 999px;
+    color: #FFFDF8;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 700;
+    gap: 8px;
+    justify-content: center;
+    padding: 11px 16px;
+    width: fit-content;
+  }
+
+  .download-button:hover {
+    background: var(--wine);
+  }
+
+  .open-link {
+    align-items: center;
+    color: var(--wine);
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 700;
+    gap: 8px;
+    width: fit-content;
+  }
+
+  .cv-card:nth-child(even) .cv-meta { color: var(--wine); }
+  .cv-card:nth-child(even):hover {
+    border-color: var(--wine);
+    box-shadow: 0 16px 34px rgba(122, 38, 58, 0.14);
+  }
+
+  .note {
+    background: var(--wine-soft);
+    border: 1px solid rgba(122, 38, 58, 0.2);
+    border-radius: 24px;
+    color: #4B1D2A;
+    margin-top: 18px;
+    padding: 22px 24px;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 30px 0 42px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+  }
+
+  .footer-contact a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .footer-contact a:hover { color: var(--wine); }
+
+  .footer-avail {
+    align-items: center;
+    display: flex;
     gap: 8px;
   }
+
   .avail-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #4AE87A;
     animation: pulse 2.5s ease-in-out infinite;
+    background: var(--green);
+    border-radius: 50%;
+    height: 7px;
+    width: 7px;
   }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  @media (max-width: 700px) {
-    header, footer { padding: 32px 24px; }
-    .cv-row { padding: 0 24px; grid-template-columns: 40px 1fr 48px; }
-    .cv-body { padding: 28px 20px 28px 16px; }
-    .cv-title { font-size: 20px; }
-    .cv-arrow { opacity: 1; transform: none; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  body,
+  body * {
+    font-family: Verdana, Geneva, sans-serif !important;
+  }
+
+  h1 {
+    font-size: clamp(40px, 5.2vw, 68px);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.12;
+  }
+
+  .quick-card h2,
+  .section-head h2,
+  .cv-title {
+    letter-spacing: 0.01em;
+    line-height: 1.18;
+  }
+
+  @media (max-width: 860px) {
+    header,
+    main,
+    footer {
+      width: min(100% - 32px, 1120px);
+    }
+
+    header,
+    .section-head,
+    footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 36px 24px;
+    }
+
+    .cv-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .header-actions {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quick-card,
+    .cv-card {
+      border-radius: 20px;
+    }
   }
 </style>
 </head>
 <body>
+
 <header>
   <div class="header-name">Tiago Leichsenring</div>
-  <div style="display:flex;align-items:center;gap:24px;">
-    <div class="header-label">Select a CV format</div>
+  <div class="header-actions">
+    <div class="header-label">CV selection for recruiters</div>
     <a href="index.html" class="lang-switch">DE</a>
   </div>
 </header>
+
 <main>
-  <div class="cv-list">
-    <a href="CV-topfunnel-en.html" class="cv-row">
-      <div class="cv-num">01</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Top of Funnel · Awareness</div>
-        <div class="cv-title">Poster Format</div>
-        <div class="cv-desc">Maximum attention, minimum friction. Big numbers, clear statement — for the first impression.</div>
+  <section class="hero" aria-labelledby="intro-title">
+    <div>
+      <div class="eyebrow">Marketing profile · DACH · Berlin</div>
+      <h1 id="intro-title">Hi, I am Tiago. This is the small CV selection journey.</h1>
+      <p class="hero-copy">
+        This page collects several CV formats for different recruiting moments:
+        from a fast first impression to a more detailed case-study view. In short:
+        <strong>marketing experience, clear results, and a little personality</strong> - without throwing confetti at the ATS.
+      </p>
+      <div class="hero-actions">
+        <a href="Tiago-Leichsenring-CV.pdf" download class="download-button">Download CV as PDF</a>
       </div>
-      <div class="cv-arrow">→</div>
-    </a>
-    <a href="CV-middlefunnel-en.html" class="cv-row">
-      <div class="cv-num">02</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Middle of Funnel · Consideration</div>
-        <div class="cv-title">Case Study Format</div>
-        <div class="cv-desc">Proof, numbers, differentiation. Case studies with methodology and results — for HR managers who compare.</div>
+    </div>
+
+    <aside class="quick-card" aria-label="What you will find here">
+      <div>
+        <div class="section-kicker">What you will find</div>
+        <h2>The right CV for your point of view.</h2>
       </div>
-      <div class="cv-arrow">→</div>
-    </a>
-    <a href="CV-bottonfunnel-en.html" class="cv-row">
-      <div class="cv-num">03</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Bottom of Funnel · Decision</div>
-        <div class="cv-title">Ready to Hire Format</div>
-        <div class="cv-desc">Availability, trust, clear CTA. Every question answered before it's asked.</div>
+      <p>Each version tells the same professional core differently: faster, deeper, more classic, or more creative.</p>
+      <ul class="quick-list">
+        <li>Strengths that are easy to scan</li>
+        <li>Marketing results with context</li>
+        <li>Contact and availability without a treasure hunt</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="downloads" aria-labelledby="downloads-title">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">View</div>
+        <h2 id="downloads-title">My CVs</h2>
       </div>
-      <div class="cv-arrow">→</div>
-    </a>
-    <a href="CV-classic-en.html" class="cv-row">
-      <div class="cv-num">04</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Standard · Print-ready</div>
-        <div class="cv-title">Classic Format</div>
-        <div class="cv-desc">Clean, printable, timeless. For ATS systems and formal application processes.</div>
-      </div>
-      <div class="cv-arrow">→</div>
-    </a>
-    <a href="CV-Story-telling-en.html" class="cv-row">
-      <div class="cv-num">05</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Narrative · Editorial</div>
-        <div class="cv-title">Storytelling Format</div>
-        <div class="cv-desc">The career path as a story. Chapters, turning points, epilogue — for creative companies and decision-makers who read.</div>
-      </div>
-      <div class="cv-arrow">→</div>
-    </a>
-    <a href="CV-RPG-en.html" class="cv-row">
-      <div class="cv-num">06</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Creative · Gamified</div>
-        <div class="cv-title">RPG Character Sheet</div>
-        <div class="cv-desc">Skills as attributes, jobs as quests, achievements as trophies. For teams with personality.</div>
-      </div>
-      <div class="cv-arrow">→</div>
-    </a>
-    <a href="CV-powerpoint-en.html" class="cv-row">
-      <div class="cv-num">07</div>
-      <div class="cv-body">
-        <div class="cv-funnel-tag">Presentation · Slide Deck</div>
-        <div class="cv-title">Interview Deck Format</div>
-        <div class="cv-desc">9 slides, keyboard navigation. For interviews where you present yourself.</div>
-      </div>
-      <div class="cv-arrow">→</div>
-    </a>
-  </div>
+      <p class="cv-desc">These links open the respective HTML version of the CV.</p>
+    </div>
+
+    <div class="cv-grid">
+      <a href="CV-topfunnel-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">01 · Awareness</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">Poster Format</h3>
+          <p class="cv-desc">Maximum attention, minimum friction. Big numbers and a clear statement for the first impression.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+
+      <a href="CV-middlefunnel-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">02 · Consideration</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">Case Study Format</h3>
+          <p class="cv-desc">Proof, numbers, and differentiation with methodology and results for HR managers who compare.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+
+      <a href="CV-bottonfunnel-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">03 · Decision</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">Ready to Hire Format</h3>
+          <p class="cv-desc">Availability, trust, and a clear CTA. Key questions answered before they are asked.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+
+      <a href="CV-classic-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">04 · Print-ready</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">Classic Format</h3>
+          <p class="cv-desc">Clean, printable, and timeless for ATS systems and formal application processes.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+
+      <a href="CV-Story-telling-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">05 · Narrative</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">Storytelling Format</h3>
+          <p class="cv-desc">The career path as a story with chapters, turning points, and epilogue for decision-makers who like to read.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+
+      <a href="CV-RPG-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">06 · Creative</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">RPG Character Sheet</h3>
+          <p class="cv-desc">Skills as attributes, roles as quests, and achievements as trophies. For teams with humor and personality.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+
+      <a href="CV-powerpoint-en.html" class="cv-card">
+        <div class="cv-topline">
+          <span class="cv-meta">07 · Presentation</span>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <div>
+          <h3 class="cv-title">Interview Deck Format</h3>
+          <p class="cv-desc">A presentation-style version with keyboard navigation for interviews where you present yourself.</p>
+        </div>
+        <span class="open-link">View CV</span>
+      </a>
+    </div>
+
+    <p class="note">
+      Looking for the straightforward version? Start with the Classic Format. Want a quick feel for impact and personality? Poster or Case Study are the best first clicks.
+    </p>
+  </section>
 </main>
+
 <footer>
   <div class="footer-contact">
     <a href="mailto:tiagoleichs@gmail.com">tiagoleichs@gmail.com</a>
-    <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank">LinkedIn</a>
+    <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank" rel="noreferrer">LinkedIn</a>
     <span>Berlin 13509</span>
   </div>
   <div class="footer-avail">
@@ -240,5 +528,6 @@
     Available from June 2026
   </div>
 </footer>
+
 </body>
 </html>

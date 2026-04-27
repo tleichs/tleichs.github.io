@@ -6,14 +6,14 @@
 <title>Tiago Leichsenring — Ready to Hire</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#FAFAF8;--ink:#111110;--ink2:#3A3830;--ink3:#7A7870;--green:#1A7A4A;--green-light:#E8F5EE;--green-bg:#F0FAF5;--rule:#E4E0D8;--accent:#2A6B40;}
+  :root{--bg:#F8F5EF;--ink:#111110;--ink2:#3A3830;--ink3:#554B43;--green:#2F6B4F;--green-light:#DCE9DF;--green-bg:#FFFDF8;--rule:#DED3C4;--accent:#7A263A;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;}
   .back-btn{position:fixed;top:1.5rem;left:1.5rem;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);text-decoration:none;background:white;border:1px solid var(--rule);padding:0.5rem 1rem;z-index:100;transition:all 0.2s;}
   .back-btn:hover{color:var(--accent);border-color:var(--accent);}
-  .sticky-bar{position:fixed;top:0;left:0;right:0;background:var(--ink);color:white;padding:0.75rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;transform:translateY(-100%);transition:transform 0.3s ease;}
+  .sticky-bar{position:fixed;top:0;left:0;right:0;background:var(--green-bg);color:var(--ink);border-bottom:1px solid var(--rule);padding:0.75rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;transform:translateY(-100%);transition:transform 0.3s ease;}
   .sticky-bar.visible{transform:translateY(0);}
-  .sticky-bar .sb-text{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:#E8E0D0;}
+  .sticky-bar .sb-text{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:var(--ink);}
   .sticky-bar .sb-cta{background:var(--green);color:white;text-decoration:none;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.75rem;transition:background 0.2s;}
   .sticky-bar .sb-cta:hover{background:#14643C;}
   .hero{padding:6rem 5rem 4rem;background:white;border-bottom:1px solid var(--rule);}
@@ -24,14 +24,14 @@
   .hero-role{font-size:1rem;color:var(--ink3);margin-bottom:2.5rem;font-weight:300;}
   .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
   .hero-body p{color:var(--ink2);margin-bottom:1rem;font-size:0.93rem;line-height:1.7;}
-  .hero-contact{background:var(--ink);padding:2rem;}
-  .hc-label{font-family:'Syne',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#7A7060;margin-bottom:1.25rem;}
-  .hc-main{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:#F0E8D8;margin-bottom:0.25rem;}
-  .hc-sub{font-size:0.8rem;color:#5A5448;margin-bottom:1.5rem;}
+  .hero-contact{background:var(--green-bg);border:1px solid var(--rule);border-left:6px solid var(--green);padding:2rem;}
+  .hc-label{font-family:'Syne',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;}
+  .hc-main{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:0.25rem;}
+  .hc-sub{font-size:0.8rem;color:var(--ink3);margin-bottom:1.5rem;}
   .contact-btn{display:block;width:100%;background:var(--green);color:white;text-decoration:none;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem;text-align:center;transition:background 0.2s;margin-bottom:0.75rem;}
   .contact-btn:hover{background:#14643C;}
-  .contact-btn.secondary{background:transparent;border:1px solid #2A2820;color:#7A7060;}
-  .contact-btn.secondary:hover{background:#1A1814;color:#D4C8B0;}
+  .contact-btn.secondary{background:transparent;border:1px solid var(--rule);color:var(--accent);}
+  .contact-btn.secondary:hover{background:var(--green-light);color:var(--green);}
   .why-now{background:var(--green-bg);border:1px solid #C8E8D4;padding:2rem;margin-top:1.5rem;}
   .why-now h3{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
   .why-now h3::before{content:'✓';}
@@ -60,16 +60,18 @@
   .fact-key{font-weight:600;color:var(--ink);}
   .fact-val{color:var(--ink2);}
   .fact-val .tag{display:inline-block;font-size:0.7rem;background:var(--green-light);color:var(--green);border:1px solid #C8E8D4;padding:0.15rem 0.5rem;margin-right:0.3rem;}
-  .final-cta{background:var(--ink);padding:5rem;text-align:center;}
-  .final-cta h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:800;color:#F0E8D8;margin-bottom:1rem;line-height:1.2;}
-  .final-cta p{color:#5A5448;font-size:0.9rem;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;}
+  .final-cta{background:var(--green-bg);border-top:1px solid var(--rule);padding:5rem;text-align:center;}
+  .final-cta h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:800;color:var(--ink);margin-bottom:1rem;line-height:1.2;}
+  .final-cta p{color:var(--ink3);font-size:0.9rem;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;}
   .final-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
   .final-btn{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1.1rem 2.5rem;text-decoration:none;transition:all 0.2s;}
   .final-btn.primary{background:var(--green);color:white;}
   .final-btn.primary:hover{background:#14643C;}
-  .final-btn.ghost{border:1px solid #2A2820;color:#7A7060;}
-  .final-btn.ghost:hover{border-color:#5A5448;color:#C4B8A0;}
+  .final-btn.ghost{border:1px solid var(--rule);color:var(--accent);}
+  .final-btn.ghost:hover{border-color:var(--green);color:var(--green);}
   @media(max-width:780px){.hero{padding:4rem 2rem 3rem;}.hero-grid{grid-template-columns:1fr;}.proof-section,.deliv-section,.facts-section{padding:3rem 2rem;}.proof-grid{grid-template-columns:1fr 1fr;}.deliv-grid{grid-template-columns:1fr;}.final-cta{padding:3rem 2rem;}.sticky-bar{padding:0.75rem 1.5rem;}}
+  body,body *{font-family:Verdana,Geneva,sans-serif!important;}
+  .hero-name,.final-cta h2{font-weight:700;letter-spacing:0.01em;line-height:1.16;}
 </style>
 </head>
 <body>

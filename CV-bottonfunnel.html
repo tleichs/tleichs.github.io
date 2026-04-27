@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FAFAF8;
+    --bg: #F8F5EF;
     --ink: #111110;
     --ink2: #3A3830;
-    --ink3: #7A7870;
-    --green: #1A7A4A;
-    --green-light: #E8F5EE;
-    --green-bg: #F0FAF5;
-    --rule: #E4E0D8;
-    --accent: #2A6B40;
+    --ink3: #554B43;
+    --green: #2F6B4F;
+    --green-light: #DCE9DF;
+    --green-bg: #FFFDF8;
+    --rule: #DED3C4;
+    --accent: #7A263A;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -39,8 +39,9 @@
   /* STICKY CTA BAR */
   .sticky-bar {
     position: fixed; top: 0; left: 0; right: 0;
-    background: var(--ink);
-    color: white;
+    background: var(--green-bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
     padding: 0.75rem 3rem;
     display: flex; justify-content: space-between; align-items: center;
     z-index: 200;
@@ -51,7 +52,7 @@
   .sticky-bar .sb-text {
     font-family: 'Syne', sans-serif;
     font-size: 0.85rem; font-weight: 600;
-    color: #E8E0D0;
+    color: var(--ink);
   }
   .sticky-bar .sb-cta {
     background: var(--green);
@@ -106,19 +107,24 @@
     color: var(--ink2); margin-bottom: 1rem;
     font-size: 0.93rem; line-height: 1.7;
   }
-  .hero-contact { background: var(--ink); padding: 2rem; }
+  .hero-contact {
+    background: var(--green-bg);
+    border: 1px solid var(--rule);
+    border-left: 6px solid var(--green);
+    padding: 2rem;
+  }
   .hc-label {
     font-family: 'Syne', sans-serif;
     font-size: 0.65rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: #7A7060;
+    text-transform: uppercase; color: var(--accent);
     margin-bottom: 1.25rem;
   }
   .hc-main {
     font-family: 'Syne', sans-serif;
     font-size: 1.1rem; font-weight: 700;
-    color: #F0E8D8; margin-bottom: 0.25rem;
+    color: var(--ink); margin-bottom: 0.25rem;
   }
-  .hc-sub { font-size: 0.8rem; color: #5A5448; margin-bottom: 1.5rem; }
+  .hc-sub { font-size: 0.8rem; color: var(--ink3); margin-bottom: 1.5rem; }
   .contact-btn {
     display: block; width: 100%;
     background: var(--green);
@@ -132,10 +138,10 @@
   .contact-btn:hover { background: #14643C; }
   .contact-btn.secondary {
     background: transparent;
-    border: 1px solid #2A2820;
-    color: #7A7060;
+    border: 1px solid var(--rule);
+    color: var(--accent);
   }
-  .contact-btn.secondary:hover { background: #1A1814; color: #D4C8B0; }
+  .contact-btn.secondary:hover { background: var(--green-light); color: var(--green); }
 
   /* WHY NOW */
   .why-now {
@@ -250,7 +256,8 @@
 
   /* FINAL CTA */
   .final-cta {
-    background: var(--ink);
+    background: var(--green-bg);
+    border-top: 1px solid var(--rule);
     padding: 5rem;
     text-align: center;
   }
@@ -258,12 +265,12 @@
     font-family: 'Syne', sans-serif;
     font-size: clamp(1.8rem, 4vw, 3.5rem);
     font-weight: 800;
-    color: #F0E8D8;
+    color: var(--ink);
     margin-bottom: 1rem;
     line-height: 1.2;
   }
   .final-cta p {
-    color: #5A5448; font-size: 0.9rem;
+    color: var(--ink3); font-size: 0.9rem;
     margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto;
   }
   .final-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -276,8 +283,8 @@
   }
   .final-btn.primary { background: var(--green); color: white; }
   .final-btn.primary:hover { background: #14643C; }
-  .final-btn.ghost { border: 1px solid #2A2820; color: #7A7060; }
-  .final-btn.ghost:hover { border-color: #5A5448; color: #C4B8A0; }
+  .final-btn.ghost { border: 1px solid var(--rule); color: var(--accent); }
+  .final-btn.ghost:hover { border-color: var(--green); color: var(--green); }
 
   @media (max-width: 780px) {
     .hero { padding: 4rem 2rem 3rem; }
@@ -287,6 +294,18 @@
     .deliv-grid { grid-template-columns: 1fr; }
     .final-cta { padding: 3rem 2rem; }
     .sticky-bar { padding: 0.75rem 1.5rem; }
+  }
+
+  body,
+  body * {
+    font-family: Verdana, Geneva, sans-serif !important;
+  }
+
+  .hero-name,
+  .final-cta h2 {
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.16;
   }
 </style>
 </head>
