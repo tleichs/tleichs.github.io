@@ -1,540 +1,556 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiago Leichsenring - CV Hub</title>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2QLWCTTMF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-X2QLWCTTMF');
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #F8F5EF;
-    --surface: #FFFDF8;
-    --surface-soft: #EFE8DD;
-    --green: #2F6B4F;
-    --green-soft: #DCE9DF;
-    --wine: #7A263A;
-    --wine-soft: #F2DDE3;
-    --text: #26231F;
-    --muted: #554B43;
-    --border: #DED3C4;
-    --shadow: 0 20px 60px rgba(59, 44, 31, 0.12);
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiago Leichsenring - CV Hub</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2QLWCTTMF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background:
-      radial-gradient(circle at top left, rgba(47, 107, 79, 0.12), transparent 34rem),
-      radial-gradient(circle at top right, rgba(122, 38, 58, 0.12), transparent 30rem),
-      var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    line-height: 1.5;
-  }
-
-  a { color: inherit; }
-
-  header,
-  main,
-  footer {
-    width: min(1120px, calc(100% - 48px));
-    margin: 0 auto;
-  }
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 36px 0 28px;
-  }
-
-  .header-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .header-label,
-  .lang-switch,
-  .eyebrow,
-  .cv-meta,
-  .section-kicker,
-  .footer-contact,
-  .footer-avail {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .header-label,
-  .section-kicker,
-  .footer-contact,
-  .footer-avail {
-    color: var(--muted);
-  }
-
-  .lang-switch {
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--wine);
-    padding: 8px 13px;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .lang-switch:hover {
-    background: var(--wine-soft);
-    border-color: var(--wine);
-  }
-
-  .hero {
-    background: rgba(255, 253, 248, 0.86);
-    border: 1px solid var(--border);
-    border-radius: 32px;
-    box-shadow: var(--shadow);
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-    gap: 48px;
-    padding: 56px;
-  }
-
-  .eyebrow {
-    color: var(--green);
-    margin-bottom: 18px;
-  }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(44px, 6vw, 78px);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-    max-width: 760px;
-  }
-
-  .hero-copy {
-    color: var(--muted);
-    font-size: 18px;
-    margin-top: 24px;
-    max-width: 680px;
-  }
-
-  .hero-copy strong {
-    color: var(--text);
-    font-weight: 700;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-  }
-
-  .quick-card {
-    align-self: stretch;
-    background: var(--green);
-    border-radius: 26px;
-    color: #FFFDF8;
-    display: grid;
-    gap: 22px;
-    padding: 32px;
-  }
-
-  .quick-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    line-height: 1;
-  }
-
-  .quick-card p {
-    color: rgba(255, 253, 248, 0.78);
-    font-size: 14px;
-  }
-
-  .quick-list {
-    display: grid;
-    gap: 12px;
-    list-style: none;
-  }
-
-  .quick-list li {
-    background: rgba(255, 253, 248, 0.12);
-    border-radius: 16px;
-    padding: 12px 14px;
-  }
-
-  .downloads {
-    padding: 56px 0;
-  }
-
-  .section-head {
-    align-items: end;
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 22px;
-  }
-
-  .section-head h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 48px);
-    line-height: 1;
-  }
-
-  .cv-grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cv-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    display: grid;
-    gap: 18px;
-    padding: 24px;
-    text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-
-  .cv-card:hover {
-    border-color: var(--green);
-    box-shadow: 0 16px 34px rgba(47, 107, 79, 0.14);
-    transform: translateY(-3px);
-  }
-
-  .cv-topline {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .cv-meta {
-    color: var(--green);
-  }
-
-  .cv-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 29px;
-    line-height: 1.05;
-  }
-
-  .cv-desc {
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .download-button {
-    align-items: center;
-    background: var(--green);
-    border-radius: 999px;
-    color: #FFFDF8;
-    display: inline-flex;
-    font-size: 13px;
-    font-weight: 700;
-    gap: 8px;
-    justify-content: center;
-    padding: 11px 16px;
-    width: fit-content;
-  }
-
-  .download-button:hover {
-    background: var(--wine);
-  }
-
-  .open-link {
-    align-items: center;
-    color: var(--wine);
-    display: inline-flex;
-    font-size: 13px;
-    font-weight: 700;
-    gap: 8px;
-    width: fit-content;
-  }
-
-  .cv-card:nth-child(even) .cv-meta { color: var(--wine); }
-  .cv-card:nth-child(even):hover {
-    border-color: var(--wine);
-    box-shadow: 0 16px 34px rgba(122, 38, 58, 0.14);
-  }
-
-  .note {
-    background: var(--wine-soft);
-    border: 1px solid rgba(122, 38, 58, 0.2);
-    border-radius: 24px;
-    color: #4B1D2A;
-    margin-top: 18px;
-    padding: 22px 24px;
-  }
-
-  footer {
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 30px 0 42px;
-  }
-
-  .footer-contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px 28px;
-  }
-
-  .footer-contact a {
-    color: var(--muted);
-    text-decoration: none;
-  }
-
-  .footer-contact a:hover { color: var(--wine); }
-
-  .footer-avail {
-    align-items: center;
-    display: flex;
-    gap: 8px;
-  }
-
-  .avail-dot {
-    animation: pulse 2.5s ease-in-out infinite;
-    background: var(--green);
-    border-radius: 50%;
-    height: 7px;
-    width: 7px;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-  }
-
-  body,
-  body * {
-    font-family: Verdana, Geneva, sans-serif !important;
-  }
-
-  h1 {
-    font-size: clamp(40px, 5.2vw, 68px);
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    line-height: 1.12;
-  }
-
-  .quick-card h2,
-  .section-head h2,
-  .cv-title {
-    letter-spacing: 0.01em;
-    line-height: 1.18;
-  }
-
-  @media (max-width: 860px) {
-    header,
-    main,
-    footer {
-      width: min(100% - 32px, 1120px);
-    }
-
-    header,
-    .section-head,
-    footer {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 36px 24px;
-    }
-
-    .cv-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .header-actions {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .quick-card,
-    .cv-card {
-      border-radius: 20px;
-    }
-  }
-</style>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-X2QLWCTTMF');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --bg: #F8F5EF;
+            --surface: #FFFDF8;
+            --surface-soft: #EFE8DD;
+            --green: #2F6B4F;
+            --green-soft: #DCE9DF;
+            --wine: #7A263A;
+            --wine-soft: #F2DDE3;
+            --text: #26231F;
+            --muted: #554B43;
+            --border: #DED3C4;
+            --shadow: 0 20px 60px rgba(59, 44, 31, 0.12);
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: radial-gradient(circle at top left, rgba(47, 107, 79, 0.12), transparent 34rem), radial-gradient(circle at top right, rgba(122, 38, 58, 0.12), transparent 30rem), var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        
+        a {
+            color: inherit;
+        }
+        
+        header,
+        main,
+        footer {
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 36px 0 28px;
+        }
+        
+        .header-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .header-label,
+        .lang-switch,
+        .eyebrow,
+        .cv-meta,
+        .section-kicker,
+        .footer-contact,
+        .footer-avail {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        
+        .header-label,
+        .section-kicker,
+        .footer-contact,
+        .footer-avail {
+            color: var(--muted);
+        }
+        
+        .lang-switch {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--wine);
+            padding: 8px 13px;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        
+        .lang-switch:hover {
+            background: var(--wine-soft);
+            border-color: var(--wine);
+        }
+        
+        .hero {
+            background: rgba(255, 253, 248, 0.86);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+            gap: 48px;
+            padding: 56px;
+        }
+        
+        .eyebrow {
+            color: var(--green);
+            margin-bottom: 18px;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(44px, 6vw, 78px);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            max-width: 760px;
+        }
+        
+        .hero-copy {
+            color: var(--muted);
+            font-size: 18px;
+            margin-top: 24px;
+            max-width: 680px;
+        }
+        
+        .hero-copy strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+        
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        
+        .quick-card {
+            align-self: stretch;
+            background: var(--green);
+            border-radius: 26px;
+            color: #FFFDF8;
+            display: grid;
+            gap: 22px;
+            padding: 32px;
+        }
+        
+        .quick-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            line-height: 1;
+        }
+        
+        .quick-card p {
+            color: rgba(255, 253, 248, 0.78);
+            font-size: 14px;
+        }
+        
+        .quick-list {
+            display: grid;
+            gap: 12px;
+            list-style: none;
+        }
+        
+        .quick-list li {
+            background: rgba(255, 253, 248, 0.12);
+            border-radius: 16px;
+            padding: 12px 14px;
+        }
+        
+        .downloads {
+            padding: 56px 0;
+        }
+        
+        .section-head {
+            align-items: end;
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 22px;
+        }
+        
+        .section-head h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1;
+        }
+        
+        .cv-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        
+        .cv-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            display: grid;
+            gap: 18px;
+            padding: 24px;
+            text-decoration: none;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        
+        .cv-card:hover {
+            border-color: var(--green);
+            box-shadow: 0 16px 34px rgba(47, 107, 79, 0.14);
+            transform: translateY(-3px);
+        }
+        
+        .cv-topline {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        
+        .cv-meta {
+            color: var(--green);
+        }
+        
+        .cv-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            line-height: 1.05;
+        }
+        
+        .cv-desc {
+            color: var(--muted);
+            font-size: 14px;
+        }
+        
+        .download-button {
+            align-items: center;
+            background: var(--green);
+            border-radius: 999px;
+            color: #FFFDF8;
+            display: inline-flex;
+            font-size: 13px;
+            font-weight: 700;
+            gap: 8px;
+            justify-content: center;
+            padding: 11px 16px;
+            width: fit-content;
+        }
+        
+        .download-button:hover {
+            background: var(--wine);
+        }
+        
+        .open-link {
+            align-items: center;
+            color: var(--wine);
+            display: inline-flex;
+            font-size: 13px;
+            font-weight: 700;
+            gap: 8px;
+            width: fit-content;
+        }
+        
+        .cv-card:nth-child(even) .cv-meta {
+            color: var(--wine);
+        }
+        
+        .cv-card:nth-child(even):hover {
+            border-color: var(--wine);
+            box-shadow: 0 16px 34px rgba(122, 38, 58, 0.14);
+        }
+        
+        .note {
+            background: var(--wine-soft);
+            border: 1px solid rgba(122, 38, 58, 0.2);
+            border-radius: 24px;
+            color: #4B1D2A;
+            margin-top: 18px;
+            padding: 22px 24px;
+        }
+        
+        footer {
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 30px 0 42px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 28px;
+        }
+        
+        .footer-contact a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+        
+        .footer-contact a:hover {
+            color: var(--wine);
+        }
+        
+        .footer-avail {
+            align-items: center;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .avail-dot {
+            animation: pulse 2.5s ease-in-out infinite;
+            background: var(--green);
+            border-radius: 50%;
+            height: 7px;
+            width: 7px;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.35;
+            }
+        }
+        
+        body,
+        body * {
+            font-family: Verdana, Geneva, sans-serif !important;
+        }
+        
+        h1 {
+            font-size: clamp(40px, 5.2vw, 68px);
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            line-height: 1.12;
+        }
+        
+        .quick-card h2,
+        .section-head h2,
+        .cv-title {
+            letter-spacing: 0.01em;
+            line-height: 1.18;
+        }
+        
+        @media (max-width: 860px) {
+            header,
+            main,
+            footer {
+                width: min(100% - 32px, 1120px);
+            }
+            header,
+            .section-head,
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 36px 24px;
+            }
+            .cv-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 520px) {
+            .header-actions {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .quick-card,
+            .cv-card {
+                border-radius: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-  <div class="header-name">Tiago Leichsenring</div>
-  <div class="header-actions">
-    <div class="header-label">CV-Auswahl für Recruiter</div>
-    <a href="index-en.html" class="lang-switch">EN</a>
-  </div>
-</header>
+    <header>
+        <div class="header-name">Tiago Leichsenring</div>
+        <div class="header-actions">
+            <div class="header-label">CV-Auswahl für Recruiter</div>
+            <a href="index-en.html" class="lang-switch">EN</a>
+        </div>
+    </header>
 
-<main>
-  <section class="hero" aria-labelledby="intro-title">
-    <div>
-      <div class="eyebrow">Marketing-Profil · DACH · Berlin</div>
-      <h1 id="intro-title">Hallo, ich bin Tiago. Hier beginnt die kleine CV-Auswahlreise.</h1>
-      <p class="hero-copy">
-        Diese Seite bündelt mehrere Lebenslauf-Formate für unterschiedliche Recruiting-Momente:
-        vom schnellen ersten Eindruck bis zur detailreichen Case-Study. Kurz gesagt:
-        <strong>Marketing-Erfahrung, klare Ergebnisse und ein bisschen Persönlichkeit</strong> - ohne Konfetti auf dem ATS.
-      </p>
-      <div class="hero-actions">
-        <a href="Tiago-Leichsenring-CV.pdf" download class="download-button">CV als PDF downloaden</a>
-      </div>
-    </div>
+    <main>
+        <section class="hero" aria-labelledby="intro-title">
+            <div>
+                <div class="eyebrow">Marketing-Profil · DACH · Berlin</div>
+                <h1 id="intro-title">Hallo, ich bin Tiago. Hier beginnt die kleine CV-Auswahlreise.</h1>
+                <p class="hero-copy">
+                    Diese Seite bündelt mehrere Lebenslauf-Formate für unterschiedliche Recruiting-Momente: vom schnellen ersten Eindruck bis zur detailreichen Case-Study. Kurz gesagt:
+                    <strong>Marketing-Erfahrung, klare Ergebnisse und ein bisschen Persönlichkeit</strong> - ohne Konfetti auf dem ATS.
+                </p>
+                <div class="hero-actions">
+                    <a href="Lebenslauf_Tiago_Leichsenring.pdf" download class="download-button">CV als PDF downloaden</a>
+                </div>
+            </div>
 
-    <aside class="quick-card" aria-label="Was Sie hier finden">
-      <div>
-        <div class="section-kicker">Hier finden Sie</div>
-        <h2>Den passenden CV für Ihren Blickwinkel.</h2>
-      </div>
-      <p>Jede Version erzählt denselben beruflichen Kern anders: schneller, tiefer, klassischer oder kreativer.</p>
-      <ul class="quick-list">
-        <li>Stärken schnell erfassbar</li>
-        <li>Marketing-Erfolge mit Kontext</li>
-        <li>Kontakt und Verfügbarkeit ohne Suchspiel</li>
-      </ul>
-    </aside>
-  </section>
+            <aside class="quick-card" aria-label="Was Sie hier finden">
+                <div>
+                    <div class="section-kicker">Hier finden Sie</div>
+                    <h2>Den passenden CV für Ihren Blickwinkel.</h2>
+                </div>
+                <p>Jede Version erzählt denselben beruflichen Kern anders: schneller, tiefer, klassischer oder kreativer.</p>
+                <ul class="quick-list">
+                    <li>Stärken schnell erfassbar</li>
+                    <li>Marketing-Erfolge mit Kontext</li>
+                    <li>Kontakt und Verfügbarkeit ohne Suchspiel</li>
+                </ul>
+            </aside>
+        </section>
 
-  <section class="downloads" aria-labelledby="downloads-title">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Ansicht</div>
-        <h2 id="downloads-title">Meine CVs</h2>
-      </div>
-      <p class="cv-desc">Diese Links öffnen die jeweilige HTML-Version des Lebenslaufs.</p>
-    </div>
+        <section class="downloads" aria-labelledby="downloads-title">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">Ansicht</div>
+                    <h2 id="downloads-title">Meine CVs</h2>
+                </div>
+                <p class="cv-desc">Diese Links öffnen die jeweilige HTML-Version des Lebenslaufs.</p>
+            </div>
 
-    <div class="cv-grid">
-      <a href="CV-topfunnel.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">01 · Awareness</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">Poster Format</h3>
-          <p class="cv-desc">Maximale Aufmerksamkeit, minimale Reibung. Große Zahlen und ein klares Statement für den ersten Eindruck.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
+            <div class="cv-grid">
+                <a href="CV-topfunnel.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">01 · Awareness</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">Poster Format</h3>
+                        <p class="cv-desc">Maximale Aufmerksamkeit, minimale Reibung. Große Zahlen und ein klares Statement für den ersten Eindruck.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
 
-      <a href="CV-middlefunnel.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">02 · Consideration</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">Case Study Format</h3>
-          <p class="cv-desc">Beweise, Zahlen und Differenzierung mit Methodik und Ergebnissen für HR-Manager, die vergleichen.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
+                <a href="CV-middlefunnel.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">02 · Consideration</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">Case Study Format</h3>
+                        <p class="cv-desc">Beweise, Zahlen und Differenzierung mit Methodik und Ergebnissen für HR-Manager, die vergleichen.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
 
-      <a href="CV-bottonfunnel.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">03 · Decision</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">Ready to Hire Format</h3>
-          <p class="cv-desc">Verfügbarkeit, Vertrauen und ein klarer CTA. Alle wichtigen Fragen beantwortet, bevor sie gestellt werden.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
+                <a href="CV-bottonfunnel.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">03 · Decision</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">Ready to Hire Format</h3>
+                        <p class="cv-desc">Verfügbarkeit, Vertrauen und ein klarer CTA. Alle wichtigen Fragen beantwortet, bevor sie gestellt werden.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
 
-      <a href="CV-classic.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">04 · Print-ready</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">Classic Format</h3>
-          <p class="cv-desc">Klassisch, druckbar und zeitlos für ATS-Systeme und formelle Bewerbungsverfahren.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
+                <a href="CV-classic.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">04 · Print-ready</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">Classic Format</h3>
+                        <p class="cv-desc">Klassisch, druckbar und zeitlos für ATS-Systeme und formelle Bewerbungsverfahren.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
 
-      <a href="CV-Story-telling.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">05 · Narrative</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">Storytelling Format</h3>
-          <p class="cv-desc">Der Karriereweg als Geschichte mit Kapiteln, Wendepunkten und Epilog für Entscheider, die gerne lesen.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
+                <a href="CV-Story-telling.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">05 · Narrative</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">Storytelling Format</h3>
+                        <p class="cv-desc">Der Karriereweg als Geschichte mit Kapiteln, Wendepunkten und Epilog für Entscheider, die gerne lesen.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
 
-      <a href="CV-RPG.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">06 · Creative</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">RPG Character Sheet</h3>
-          <p class="cv-desc">Skills als Attribute, Stationen als Quests und Erfolge als Trophäen. Für Teams mit Humor und Persönlichkeit.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
+                <a href="CV-RPG.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">06 · Creative</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">RPG Character Sheet</h3>
+                        <p class="cv-desc">Skills als Attribute, Stationen als Quests und Erfolge als Trophäen. Für Teams mit Humor und Persönlichkeit.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
 
-      <a href="CV-powerpoint.html" class="cv-card">
-        <div class="cv-topline">
-          <span class="cv-meta">07 · Presentation</span>
-          <span aria-hidden="true">↗</span>
-        </div>
-        <div>
-          <h3 class="cv-title">Interview Deck Format</h3>
-          <p class="cv-desc">Eine Präsentationsversion mit Tastaturnavigation für Gespräche, in denen man sich selbst vorstellt.</p>
-        </div>
-        <span class="open-link">CV ansehen</span>
-      </a>
-    </div>
+                <a href="CV-powerpoint.html" class="cv-card">
+                    <div class="cv-topline">
+                        <span class="cv-meta">07 · Presentation</span>
+                        <span aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                        <h3 class="cv-title">Interview Deck Format</h3>
+                        <p class="cv-desc">Eine Präsentationsversion mit Tastaturnavigation für Gespräche, in denen man sich selbst vorstellt.</p>
+                    </div>
+                    <span class="open-link">CV ansehen</span>
+                </a>
+            </div>
 
-    <p class="note">
-      Sie suchen die nüchterne Variante? Starten Sie mit dem Classic Format. Sie wollen schnell ein Gefühl für Impact und Persönlichkeit? Poster oder Case Study sind die besten ersten Klicks.
-    </p>
-  </section>
-</main>
+            <p class="note">
+                Sie suchen die nüchterne Variante? Starten Sie mit dem Classic Format. Sie wollen schnell ein Gefühl für Impact und Persönlichkeit? Poster oder Case Study sind die besten ersten Klicks.
+            </p>
+        </section>
+    </main>
 
-<footer>
-  <div class="footer-contact">
-    <a href="mailto:tiagoleichs@gmail.com">tiagoleichs@gmail.com</a>
-    <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank" rel="noreferrer">LinkedIn</a>
-    <span>Berlin 13509</span>
-  </div>
-  <div class="footer-avail">
-    <div class="avail-dot"></div>
-    Ab Juni 2026 verfügbar
-  </div>
-</footer>
+    <footer>
+        <div class="footer-contact">
+            <a href="mailto:tiagoleichs@gmail.com">tiagoleichs@gmail.com</a>
+            <a href="https://linkedin.com/in/tiago-leichsenring-34134536" target="_blank" rel="noreferrer">LinkedIn</a>
+            <span>Berlin 13509</span>
+        </div>
+        <div class="footer-avail">
+            <div class="avail-dot"></div>
+            Ab Juni 2026 verfügbar
+        </div>
+    </footer>
 
 </body>
+
 </html>
